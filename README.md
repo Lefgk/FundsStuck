@@ -121,9 +121,7 @@ BEP20: transfer amount exceeds allowance
 | 40 | 0x7083609fCE4d1d8Dc0C979AAb8c869Ea2C873402 | DOT | DOT | 57 | 0% | 0xE8038B55D7C16a979e9D588725b89E78C0cbCB48 |
 | 41 | 0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c | WBNB | WBNB | 750 | 8% | 0x29c089E32Ab620c782fFd4103Ee7ab89d2FaE437 |
 
-### Summary
 
-- **Total Pools**: 42
-- **Total Allocation Points**: 8,539
-- **Total Value Locked**: $1,431,175 (net position after borrowing)
-- **Critical Issue**: All strategy contracts affected by approval bug preventing fund recovery
+Pools 33-40 allocation getting reduced : 
+<img width="1521" height="646" alt="image" src="https://github.com/user-attachments/assets/3ce9621d-235e-4158-976a-a4b7e8946849" />
+
