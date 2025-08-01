@@ -123,5 +123,8 @@ BEP20: transfer amount exceeds allowance
 
 
 Pools 33-40 allocation getting reduced : 
+
+https://bscscan.com/advanced-filter?tadd=0x7f7bf15b9c68d23339c31652c8e860492991760d&fadd=0x16c7C45725A977ae6530e8dEE73F6da9aE2e7E07&mtd=0x64482f79%7eSet
+
 <img width="1521" height="646" alt="image" src="https://github.com/user-attachments/assets/3ce9621d-235e-4158-976a-a4b7e8946849" />
 
