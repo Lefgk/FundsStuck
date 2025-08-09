@@ -127,12 +127,12 @@ Pools 33-40 allocation getting reduced :
 https://bscscan.com/advanced-filter?tadd=0x7f7bf15b9c68d23339c31652c8e860492991760d&fadd=0x16c7C45725A977ae6530e8dEE73F6da9aE2e7E07&mtd=0x64482f79%7eSet
 
 <img width="1521" height="646" alt="image" src="https://github.com/user-attachments/assets/3ce9621d-235e-4158-976a-a4b7e8946849" />
-# RAKE Protocol - All Tables in Pure Markdown
+
 
 ## Main Protocol Summary Table
 
-| Date | BNB<br/>Price | RAKE/<br/>BNB | RAKE<br/>Price | WBNB<br/>Balance | Available<br/>Liquidity BNB | Available<br/>Liquidity USD | Dev Fee<br/>Earned | Venus<br/>Rewards | Cumulative<br/>Rewards | Total Stuck<br/>Assets |
-|------|-----------|----------|------------|--------------|-------------------------|-------------------------|----------------|---------------|--------------------|--------------------|
+| Date    | BNB<br/>Price | RAKE/<br/>BNB | RAKE<br/>Price | WBNB<br/>Balance | Available<br/>Liquidity BNB | Available<br/>Liquidity USD | Dev Fee<br/>Earned | Venus<br/>Rewards | Cumulative<br/>Rewards | Total Stuck<br/>Assets |
+|---------|-----------|----------|------------|--------------|-------------------------|-------------------------|----------------|---------------|--------------------|--------------------|
 | Feb 25, 2021 | $280 | ~447 | $125,160 | 1,000 | 448,000 | $125,440,000 | 31.80 RAKE ($3,980,088) | 31.78 RAKE ($3,977,509) | $7,957,597 | $1,557,670 |
 | Feb 26, 2021 | $260 | ~100 | $26,000 | 6,500 | 650,000 | $169,000,000 | 31.80 RAKE ($826,800) | 31.78 RAKE ($826,280) | $8,810,677 | $1,520,000 |
 | Feb 27, 2021 | $270 | ~59 | $15,930 | 5,800 | 342,200 | $92,394,000 | 31.80 RAKE ($506,574) | 31.78 RAKE ($506,064) | $9,823,315 | $1,490,000 |
