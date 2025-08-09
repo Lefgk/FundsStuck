@@ -127,11 +127,11 @@ Pools 33-40 allocation getting reduced :
 https://bscscan.com/advanced-filter?tadd=0x7f7bf15b9c68d23339c31652c8e860492991760d&fadd=0x16c7C45725A977ae6530e8dEE73F6da9aE2e7E07&mtd=0x64482f79%7eSet
 
 <img width="1521" height="646" alt="image" src="https://github.com/user-attachments/assets/3ce9621d-235e-4158-976a-a4b7e8946849" />
+# RAKE Protocol - All Tables in Pure Markdown
 
+## Main Protocol Summary Table
 
-"RAKE Protocol vs Stuck Assets: Complete Performance Breakdown"
-
-| Date | BNB Price | RAKE/BNB | RAKE Price | WBNB Balance | Available Liquidity BNB | Available Liquidity USD | Dev Fee Earned | Venus Rewards | Cumulative Rewards | Total Stuck Assets |
+| Date | BNB<br/>Price | RAKE/<br/>BNB | RAKE<br/>Price | WBNB<br/>Balance | Available<br/>Liquidity BNB | Available<br/>Liquidity USD | Dev Fee<br/>Earned | Venus<br/>Rewards | Cumulative<br/>Rewards | Total Stuck<br/>Assets |
 |------|-----------|----------|------------|--------------|-------------------------|-------------------------|----------------|---------------|--------------------|--------------------|
 | Feb 25, 2021 | $280 | ~447 | $125,160 | 1,000 | 448,000 | $125,440,000 | 31.80 RAKE ($3,980,088) | 31.78 RAKE ($3,977,509) | $7,957,597 | $1,557,670 |
 | Feb 26, 2021 | $260 | ~100 | $26,000 | 6,500 | 650,000 | $169,000,000 | 31.80 RAKE ($826,800) | 31.78 RAKE ($826,280) | $8,810,677 | $1,520,000 |
@@ -163,3 +163,75 @@ https://bscscan.com/advanced-filter?tadd=0x7f7bf15b9c68d23339c31652c8e8604929917
 | Jan 31, 2022 | $330 | ~20 | $6,600 | 250 | 5,000 | $1,650,000 | Period Total | Period Total | $11,850,000 | $1,320,000 |
 | Feb 15, 2022 | $350 | ~12 | $4,200 | 180 | 2,160 | $756,000 | Period Total | Period Total | $11,880,000 | $1,350,000 |
 | Feb 28, 2022 | $360 | ~7.86 | $2,830 | 150 | 1,179 | $424,440 | Period Total | Period Total | $11,900,000 | $1,360,000 |
+
+---
+
+## BTCB Performance (10.40 BTCB) - Largest Single Asset
+
+| Date | BTC<br/>Price | Value | Change | %<br/>Change | % of<br/>Portfolio |
+|------|-----------|-------|---------|----------|----------------|
+| Feb 25, 2021 | $51,000 | $530,505 | - | - | 34.0% |
+| Mar 7, 2021 | $45,000 | $468,093 | -$62,412 | -11.8% | 32.6% |
+| Apr 30, 2021 | $58,000 | $603,200 | +$72,695 | +13.7% | 36.6% |
+| May 31, 2021 | $35,000 | $364,000 | -$166,505 | -31.4% | 19.7% |
+| Jul 31, 2021 | $42,000 | $436,800 | +$67,600 | +18.3% | 32.4% |
+| Oct 31, 2021 | $61,000 | $634,400 | +$176,800 | +38.6% | 40.9% |
+| Feb 28, 2022 | $39,000 | $405,600 | +$10,400 | +2.6% | 29.8% |
+
+---
+
+## ETH Performance (256.64 ETH) - Best Performer
+
+| Date | ETH<br/>Price | Value | Change | %<br/>Change | % of<br/>Portfolio |
+|------|-----------|-------|---------|----------|----------------|
+| Feb 25, 2021 | $1,600 | $410,621 | - | - | 26.4% |
+| Mar 7, 2021 | $1,420 | $364,426 | -$46,195 | -11.3% | 25.4% |
+| Apr 30, 2021 | $2,800 | $718,592 | +$354,166 | +97.2% | 43.5% |
+| May 31, 2021 | $2,700 | $692,928 | -$25,664 | -3.6% | 37.5% |
+| Aug 31, 2021 | $3,200 | $821,248 | +$179,648 | +28.0% | 54.7% |
+| Oct 31, 2021 | $4,300 | $1,103,552 | +$359,296 | +48.3% | 71.2% |
+| Nov 30, 2021 | $4,600 | $1,180,544 | +$76,992 | +7.0% | 69.4% |
+| Feb 28, 2022 | $2,900 | $744,256 | +$51,328 | +7.4% | 54.7% |
+
+---
+
+## BNB Performance (209.36 BNB) - High Volatility
+
+| Date | BNB<br/>Price | Value | Change | %<br/>Change | % of<br/>Portfolio |
+|------|-----------|-------|---------|----------|----------------|
+| Feb 25, 2021 | $250 | $52,339 | - | - | 3.4% |
+| Mar 7, 2021 | $210 | $43,965 | -$8,374 | -16.0% | 3.1% |
+| Apr 30, 2021 | $500 | $104,678 | +$60,713 | +138.1% | 6.3% |
+| May 31, 2021 | $680 | $142,364 | +$37,686 | +36.0% | 7.7% |
+| Aug 31, 2021 | $480 | $100,493 | +$33,498 | +50.0% | 6.7% |
+| Nov 30, 2021 | $650 | $136,084 | +$31,406 | +30.0% | 8.0% |
+| Feb 28, 2022 | $360 | $75,368 | +$6,279 | +9.1% | 5.5% |
+
+---
+
+## LINK Performance (1,439.78 LINK) - Altcoin Decline
+
+| Date | LINK<br/>Price | Value | Change | %<br/>Change | % of<br/>Portfolio |
+|------|------------|-------|---------|----------|----------------|
+| Feb 25, 2021 | $28 | $40,314 | - | - | 2.6% |
+| Mar 7, 2021 | $23 | $33,115 | -$7,199 | -17.9% | 2.3% |
+| Apr 30, 2021 | $35 | $50,392 | +$17,277 | +52.2% | 3.1% |
+| Oct 31, 2021 | $32 | $46,073 | +$11,519 | +33.3% | 3.0% |
+| Feb 28, 2022 | $15 | $21,597 | -$1,440 | -6.3% | 1.6% |
+
+---
+
+## DOT Performance (81.53 DOT) - Highest Volatility
+
+| Date | DOT<br/>Price | Value | Change | %<br/>Change | % of<br/>Portfolio |
+|------|-----------|-------|---------|----------|----------------|
+| Feb 25, 2021 | $35 | $2,854 | - | - | 0.2% |
+| Mar 7, 2021 | $30 | $2,446 | -$408 | -14.3% | 0.2% |
+| Oct 31, 2021 | $45 | $3,669 | +$1,060 | +40.6% | 0.2% |
+| Feb 28, 2022 | $17 | $1,386 | -$163 | -10.5% | 0.1% |
+
+sources : 
+
+RAKE/BNB price https://dex.coinmarketcap.com/token/bsc/0xbda8d53fe0f164915b46cd2ecffd94254b6086a2/
+BNB/USD price https://coinmarketcap.com/currencies/bnb/
+RAKE/WBNB liquidity https://bscscan.com/token/0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c?a=0x1cb667fe903dbdcbd27d8b35e82fbcef4ca0f621#tokenAnalytics
