@@ -62,9 +62,7 @@ Tested functions:
 - **AUTO Per Block**: 8,000,000,000,000,000
 - **Owner**: `0x16c7C45725A977ae6530e8dEE73F6da9aE2e7E07`
 
-## F. Historical Protocol Performance (2021-2022)
-
-### G. Timeline Summary
+### F. Timeline Summary
 
 | Date         | BNB Price | RAKE/BNB | RAKE Price | Total Stuck Assets |
 | ------------ | --------- | -------- | ---------- | ------------------ |
@@ -108,7 +106,7 @@ Tested functions:
 | Feb 15, 2022 | $350          | ~12           | $4,200         | 180              | 2,160                       | $756,000                    | Period Total            | Period Total            | $11,880,000            | $1,350,000             |
 | Feb 28, 2022 | $360          | ~7.86         | $2,830         | 150              | 1,179                       | $424,440                    | Period Total            | Period Total            | $11,900,000            | $1,360,000             |
 
-## H. Data Sources
+## G. Data Sources
 
 - RAKE/BNB price: [CoinMarketCap DEX](https://dex.coinmarketcap.com/token/bsc/0xbda8d53fe0f164915b46cd2ecffd94254b6086a2/)
 - BNB/USD price: [CoinMarketCap](https://coinmarketcap.com/currencies/bnb/)
