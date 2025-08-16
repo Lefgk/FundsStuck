@@ -1,5 +1,17 @@
 # Data Appendix - RAKE Protocol Stuck Funds Analysis
 
+> **📋 Related Documents:** [Recovery Proposal](./recovery_proposal.md) | [Main README](./README.md)
+
+## Quick Reference - Table Index
+
+- **[Table 1: Venus Protocol Contract Positions](#table-1-venus-protocol-contract-positions)** - Detailed breakdown of all affected contracts
+- **[Table 2: Key Timeline Milestones](#table-2-key-timeline-milestones)** - Major events and price movements
+- **[Table 3: Daily Protocol Metrics and Rewards](#table-3-daily-protocol-metrics-and-rewards)** - Daily tracking data
+- **[Table 4: Complete Daily Trading and Liquidity Data](#table-4-complete-daily-trading-and-liquidity-data)** - Full trading analysis
+- **[Table 5: Daily Swap and Liquidity Activity Summary](#table-5-daily-swap-and-liquidity-activity-summary)** - Activity breakdown
+
+---
+
 ## A. Technical Root Cause
 
 **Bug Description**: AutoFarm strategy contract inheritance flaw
@@ -13,6 +25,8 @@
 ## B. Affected Contract Details
 
 **Primary Token**: RAKE Token Address `0xbDa8D53fe0F164915b46cd2EcfFD94254b6086a2`
+
+### Table 1: Venus Protocol Contract Positions
 
 | Contract Address                           | vToken | Total vTokens | Underlying Asset | Supplied | Borrowed | Supplied USD   | Borrowed USD   | Net USD        |
 | ------------------------------------------ | ------ | ------------- | ---------------- | -------- | -------- | -------------- | -------------- | -------------- |
@@ -64,6 +78,8 @@ Tested functions:
 
 ### F. Timeline Summary
 
+### Table 2: Key Timeline Milestones
+
 | Date         | BNB Price | RAKE/BNB | RAKE Price | Total Stuck Assets |
 | ------------ | --------- | -------- | ---------- | ------------------ |
 | Feb 25, 2021 | $280      | ~447     | $125,160   | $1,557,670         |
@@ -72,6 +88,8 @@ Tested functions:
 | Feb 28, 2022 | $360      | ~8       | $2,830     | $1,360,000         |
 
 ## Extended version :# RAKE Protocol Timeline Analysis (Feb 25 - Mar 7, 2021)
+
+### Table 3: Daily Protocol Metrics and Rewards
 
 | Date         | BNB Price | RAKE Price | WBNB Balance | RAKE Balance | Available Liquidity USD | Dev Fee Earned       | Venus Rewards        | Cumulative Rewards | Total Stuck Assets |
 | ------------ | --------- | ---------- | ------------ | ------------ | ----------------------- | -------------------- | -------------------- | ------------------ | ------------------ |
@@ -90,6 +108,8 @@ Tested functions:
 ---
 
 # RAKE Protocol Timeline Analysis - Complete Trading Data (Feb 25 - Mar 7, 2021)
+
+### Table 4: Complete Daily Trading and Liquidity Data
 
 | Date         | BNB Price | RAKE Price | WBNB Balance | RAKE Balance | Available Liquidity USD | Liquidity Added (RAKE) | Liquidity Added ($) | Liquidity Removed (RAKE) | Liquidity Removed ($) | Swapped RAKE | Swapped RAKE ($) | Swapped WBNB | Swapped WBNB ($) | Net Liquidity Change | Total Stuck Assets |
 | ------------ | --------- | ---------- | ------------ | ------------ | ----------------------- | ---------------------- | ------------------- | ------------------------ | --------------------- | ------------ | ---------------- | ------------ | ---------------- | -------------------- | ------------------ |
@@ -132,6 +152,8 @@ Tested functions:
 ---
 
 # RAKE Protocol Trading Activity Analysis (Feb 25 - Mar 7, 2021)
+
+### Table 5: Daily Swap and Liquidity Activity Summary
 
 | Date         | **SWAPS** |           |           |             |             | **LIQUIDITY** |            |              |              |          |          |
 | ------------ | --------- | --------- | --------- | ----------- | ----------- | ------------- | ---------- | ------------ | ------------ | -------- | -------- |
