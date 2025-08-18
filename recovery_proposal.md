@@ -23,8 +23,6 @@ Our exploration of various recovery methods is detailed in the technical appendi
 
 In 2021, when this issue first occurred, it coincided with Venus's depegging event, which was ultimately resolved through Binance's intervention. We had reached out at the time, but due to the depegging crisis and the overwhelming volume of support tickets, the Venus team was unable to provide assistance with our specific technical issue, resulting in minimal progress toward resolution.
 
-The historical performance data shows our protocol managed substantial assets during its operational period, with peak individual asset values reaching over $1.1 million in ETH holdings alone (**Data Appendix Section F**).
-
 ## User Refund and Impact Mitigation
 
 The bug affected our platform very shortly after launch. Fortunately, we had other functioning products, so the stuck Venus vault assets represented approximately 4% of our total value locked (TVL). Since these funds were unable to generate yield for users or the platform, we took immediate action to protect our community.
