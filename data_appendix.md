@@ -144,3 +144,4 @@ Attempted step-by-step deleveraging approach:
 - BNB/USD price: [CoinMarketCap](https://coinmarketcap.com/currencies/bnb/)
 - RAKE/WBNB liquidity: [BSCScan Token Analytics](https://bscscan.com/token/0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c?a=0x1cb667fe903dbdcbd27d8b35e82fbcef4ca0f621#tokenAnalytics)
 - Pool allocation changes: [BSCScan Advanced Filter](https://bscscan.com/advanced-filter?tadd=0x7f7bf15b9c68d23339c31652c8e860492991760d&fadd=0x16c7C45725A977ae6530e8dEE73F6da9aE2e7E07&mtd=0x64482f79%7eSet)
+- Liquidity/Swap info : events from LP token (Burn/Mint and Swap) using scripts.
