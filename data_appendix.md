@@ -1,6 +1,6 @@
 # Data Appendix - RAKE Protocol Stuck Funds Analysis
 
-> **📋 Related Documents:** [Recovery Proposal](./recovery_proposal.md) | [Main README](./README.md)
+> **📋 Related Documents:** [Recovery Proposal](./recovery_proposal.md)
 
 ## Quick Reference - Table Index
 
