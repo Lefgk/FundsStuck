@@ -89,32 +89,6 @@ Tested functions:
 | Mar 06, 2021 | $280      | $1,500     | $560,505            | $2,751,435            | $9,085,665       | $258,532         | 32 RAKE ($47,700)    | 19 RAKE ($27,930)    | $5,923,976         | $1,456,891         |
 | Mar 07, 2021 | $280      | $1,400     | $289,786            | $38,002               | $2,514,400       | $89,578          | 32 RAKE ($44,520)    | 19 RAKE ($26,068)    | $5,950,044         | $1,435,175         |
 
-
-
-
-## Key Trading Insights
-
-**Price Volatility**: RAKE token experienced extreme volatility, dropping from $125,160 on Feb 25 to $1,400 on Mar 7 - a 99% decline in just 10 days.
-
-**Trading Activity**:
-
-- Peak trading volume occurred on Feb 26: 83,307 RAKE ($2.17B) and 872 WBNB ($227K)
-- Trading activity declined significantly from Mar 4 onwards as price collapsed
-- Consistent buyer preference: 66-80% of swaps were WBNB→RAKE across most days
-
-**Liquidity Dynamics**:
-
-- Major liquidity additions on Feb 25-26: 13,083 RAKE worth $603M combined
-- Net liquidity remained positive on most days despite price decline
-
-**Market Behavior**:
-
-- Available pool liquidity peaked at $2.4M on Mar 3
-- Large outflows coincided with major price drops (Mar 4: -1,736 RAKE, Mar 6: -1,460 RAKE)
-- Despite massive trading volumes, stuck assets remained stable around $1.4-1.5M
-
-**Technical Issue**: The AutoFarm strategy contract bug prevented recovery of $1.4M+ in assets across multiple Venus Protocol positions, regardless of market conditions.
-
 ---
 
 # RAKE Protocol Trading Activity Analysis (Feb 25 - Mar 7, 2021)
