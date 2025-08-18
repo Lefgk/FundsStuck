@@ -109,7 +109,6 @@ Tested functions:
 **Liquidity Dynamics**:
 
 - Major liquidity additions on Feb 25-26: 13,083 RAKE worth $603M combined
-- Significant liquidity removal events on Mar 4 and Mar 6, indicating panic exits
 - Net liquidity remained positive on most days despite price decline
 
 **Market Behavior**:
