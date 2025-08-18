@@ -85,24 +85,40 @@ Attempted step-by-step deleveraging approach:
 
 **Root Cause**: The `unpause()` function bug that sets `wantAddress` approval to 0 instead of unlimited has rendered all Venus protocol interactions impossible, effectively locking all leveraged funds.
 
-## D. Strategy Contract Architecture
+**D. Strategy Contract Architecture**
 
 **Core Operations**:
+* Takes user deposits, borrows against them with leverage, claims Venus rewards, compounds everything back into positions
+* `deposit()` → `_farm()` → `_leverage()` → loops `_supply()` + `_borrow()` for 3x leverage
+* `withdraw()` → `_deleverage()` → `_removeSupply()` + `_repayBorrow()` to unwind positions
+* `earn()` → `claimVenus()` → `swapExactTokensForTokens()` → compounds rewards
+* `updateBalance()` → tracks `supplyBal`/`borrowBal` via `balanceOfUnderlying()` + `borrowBalanceCurrent()`
+* `deleverageOnce()` + `deleverageUntilNotOverLevered()` for risk management
+* `rebalance()` → adjusts `borrowRate`/`borrowDepth` strategy parameters
 
-- Takes user deposits, borrows against them with leverage, claims Venus rewards, compounds everything back into positions
-- `deposit()` → `_farm()` → `_leverage()` → loops `_supply()` + `_borrow()` for 3x leverage
-- `withdraw()` → `_deleverage()` → `_removeSupply()` + `_repayBorrow()` to unwind positions
-- `earn()` → `claimVenus()` → `swapExactTokensForTokens()` → compounds rewards
-- `updateBalance()` → tracks `supplyBal`/`borrowBal` via `balanceOfUnderlying()` + `borrowBalanceCurrent()`
-- `deleverageOnce()` + `deleverageUntilNotOverLevered()` for risk management
-- `rebalance()` → adjusts `borrowRate`/`borrowDepth` strategy parameters
+**Venus Protocol Integration Details**:
+* `enterMarkets([vTokenAddress])` called during deployment to enable collateral usage
+* Strategy holds single vToken position (e.g., vBTC) as both collateral and debt asset
+* Leverages Venus lending/borrowing to amplify exposure to underlying asset
+* `IVToken.mint(amount)` - supplies underlying to Venus, receives vTokens
+* `IVToken.borrow(amount)` - borrows underlying against vToken collateral
+* `IVToken.redeemUnderlying(amount)` - withdraws underlying, burns vTokens
+* `IVToken.repayBorrow(amount)` - repays borrowed underlying
+* `IVToken.balanceOfUnderlying(address)` - returns supplied balance + accrued interest
+* `IVToken.borrowBalanceCurrent(address)` - returns borrowed balance + accrued interest
+* `IVenusDistribution.claimVenus(address)` - claims XVS rewards
+
+**The Critical Bug Impact on Venus Integration**:
+* `unpause()` incorrectly sets `IERC20(wantAddress).approve(vTokenAddress, 0)`
+* This breaks ALL Venus operations requiring underlying token transfers:
+ - `IVToken.mint()` fails - cannot supply more collateral
+ - `IVToken.repayBorrow()` fails - cannot repay debt
+ - `_leverage()` fails - cannot build positions
+ - `_deleverage()` fails - cannot unwind positions
 
 ## E. RakeFarm LP Pool Analysis
 
 ### Table 2: Complete Daily Trading and Liquidity Data
-
-
-
 
 | Date | BNB Price | RAKE Price | Liq Add $ | Liq Rem $ | Swapped RAKE $ | Swapped WBNB $ | Dev Fee | Venus Rewards to stuck Vaults | Cumulative Rewards | Assets Stuck  |
 |------|-------|--------|-----------|-----------|-------------|-------------|---------|---------------|-------------|--------------|
