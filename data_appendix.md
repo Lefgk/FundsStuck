@@ -8,7 +8,6 @@
 - **[Table 2: Key Timeline Milestones](#table-2-key-timeline-milestones)** - Major events and price movements
 - **[Table 3: Daily Protocol Metrics and Rewards](#table-3-daily-protocol-metrics-and-rewards)** - Daily tracking data
 - **[Table 4: Complete Daily Trading and Liquidity Data](#table-4-complete-daily-trading-and-liquidity-data)** - Full trading analysis
-- **[Table 5: Daily Swap and Liquidity Activity Summary](#table-5-daily-swap-and-liquidity-activity-summary)** - Activity breakdown
 
 ---
 
@@ -90,25 +89,6 @@ Tested functions:
 | Mar 07, 2021 | $280      | $1,400     | $289,786            | $38,002               | $2,514,400       | $89,578          | 32 RAKE ($44,520)    | 19 RAKE ($26,068)    | $5,950,044         | $1,435,175         |
 
 ---
-
-# RAKE Protocol Trading Activity Analysis (Feb 25 - Mar 7, 2021)
-
-### Table 5: Daily Swap and Liquidity Activity Summary
-
-| Date         | **SWAPS** |           |           |             |             | **LIQUIDITY** |            |              |              |          |          |
-| ------------ | --------- | --------- | --------- | ----------- | ----------- | ------------- | ---------- | ------------ | ------------ | -------- | -------- |
-|              | Total     | RAKE→WBNB | WBNB→RAKE | Volume RAKE | Volume WBNB | RAKE Added    | WBNB Added | RAKE Removed | WBNB Removed | Net RAKE | Net WBNB |
-| Feb 25, 2021 | 4,300     | 1,447     | 2,853     | 21,837      | 147         | 2,655         | 16         | 1,145        | 8            | +1,510   | +8       |
-| Feb 26, 2021 | 8,657     | 2,436     | 6,221     | 83,307      | 872         | 10,428        | 108        | 3,443        | 39           | +6,985   | +69      |
-| Feb 27, 2021 | 4,246     | 936       | 3,310     | 32,793      | 795         | 6,727         | 161        | 4,577        | 115          | +2,150   | +46      |
-| Feb 28, 2021 | 3,412     | 1,409     | 2,003     | 9,010       | 442         | 1,442         | 69         | 1,361        | 68           | +81      | +1       |
-| Mar 01, 2021 | 3,829     | 1,649     | 2,180     | 20,374      | 1,122       | 3,329         | 194        | 1,387        | 80           | +1,942   | +114     |
-| Mar 02, 2021 | 2,997     | 1,389     | 1,608     | 8,053       | 543         | 1,694         | 115        | 761          | 53           | +932     | +62      |
-| Mar 03, 2021 | 2,148     | 608       | 1,540     | 9,308       | 641         | 2,079         | 143        | 690          | 50           | +1,389   | +93      |
-| Mar 04, 2021 | 2,366     | 684       | 1,682     | 13,037      | 1,135       | 1,528         | 134        | 3,265        | 282          | -1,736   | -148     |
-| Mar 05, 2021 | 1,534     | 314       | 1,220     | 4,967       | 558         | 897           | 101        | 408          | 48           | +489     | +53      |
-| Mar 06, 2021 | 1,534     | 302       | 1,232     | 6,057       | 923         | 374           | 54         | 1,834        | 294          | -1,461   | -240     |
-| Mar 07, 2021 | 547       | 109       | 438       | 1,796       | 320         | 207           | 37         | 27           | 5            | +180     | +32      |
 
 ## G. Data Sources
 
