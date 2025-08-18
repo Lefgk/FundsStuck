@@ -76,17 +76,6 @@ Tested functions:
 - **AUTO Per Block**: 8,000,000,000,000,000
 - **Owner**: `0x16c7C45725A977ae6530e8dEE73F6da9aE2e7E07`
 
-### F. Timeline Summary
-
-### Table 2: Key Timeline Milestones
-
-| Date         | BNB Price | RAKE/BNB | RAKE Price | Total Stuck Assets |
-| ------------ | --------- | -------- | ---------- | ------------------ |
-| Feb 25, 2021 | $280      | ~447     | $125,160   | $1,557,670         |
-| Mar 07, 2021 | $280      | ~5       | $1,400     | $1,435,175         |
-| Dec 31, 2021 | $530      | ~0       | $53        | $1,480,000         |
-| Feb 28, 2022 | $360      | ~8       | $2,830     | $1,360,000         |
-
 ### Table 3: Complete Daily Trading and Liquidity Data
 
 
