@@ -40,6 +40,19 @@
 | 0xf498e4C06CcE3bFeaD5f32a69Db3d39af401E122 | vBNB   | 7,000         | BNB              | 184      | 127      | $143,901       | $99,936        | $43,965        |
 | **TOTAL**                                 |        |               |                  |          |          | **$3,196,540** | **$1,765,365** | **$1,431,175** |
 
+| Contract Address                           | vToken | Total vTokens | Underlying Asset | Supplied | Borrowed | Supplied USD | Borrowed USD | Net USD |
+| ------------------------------------------ | ------ | ------------- | ---------------- | -------- | -------- | ------------ | ------------ | ------- |
+| 0xB3bCA2C1c2C4DF2C903BE3F341C96732Ac8b3c12 | vBTC   | 450K          | BTCB             | 9        | 5        | $1.08M       | $616K        | $468K   |
+| 0x568254EAAC1476faf9A908e577faa3Ab96029801 | vDOT   | 55K           | DOT              | 1.25K    | 616      | $4.8K        | $2.4K        | $2.4K   |
+| 0x7485704d8b6cebd1411f5aafeb063e6f2816069a | vUSDC  | 21M           | USDC             | 544K     | 329K     | $544K        | $329K        | $215K   |
+| 0xc6f470da6c284d16647cee2230522a85b0818f6d | vUSDT  | 10M           | USDT             | 257K     | 156K     | $257K        | $156K        | $101K   |
+| 0x0b09Efc9458c00354414D2A560aA6EDa19490169 | vLINK  | 230K          | LINK             | 4.7K     | 2.9K     | $83K         | $50K         | $33K    |
+| 0x9E3e8878B53c5762Ec6F461701f02ee6d1D9d19C | vETH   | 11K           | ETH              | 233      | 136      | $876K        | $512K        | $364K   |
+| 0xDF3df3EE9Fb6D5c9B4fdcF80A92D25d2285A859C | vBUSD  | 9M            | BUSD             | 207K     | 0        | $207K        | $0           | $207K   |
+| 0xf498e4C06CcE3bFeaD5f32a69Db3d39af401E122 | vBNB   | 7K            | BNB              | 184      | 127      | $144K        | $100K        | $44K    |
+| **TOTAL**                                  |        |               |                  |          |          | **$3.20M**   | **$1.77M**   | **$1.43M** |
+
+
 ## C. Info on attempts to recover funds
 
 **All functions tested fail with error**: `BEP20: transfer amount exceeds allowance`
