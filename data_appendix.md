@@ -90,7 +90,7 @@ Tested functions:
 
 ---
 
-## G. Data Sources
+## F. Data Sources
 
 - RAKE/BNB price: [CoinMarketCap DEX](https://dex.coinmarketcap.com/token/bsc/0xbda8d53fe0f164915b46cd2ecffd94254b6086a2/)
 - BNB/USD price: [CoinMarketCap](https://coinmarketcap.com/currencies/bnb/)
