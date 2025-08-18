@@ -87,7 +87,7 @@ Attempted step-by-step deleveraging approach:
 
 **Root Cause**: The `unpause()` function bug that sets `wantAddress` approval to 0 instead of unlimited has rendered all Venus protocol interactions impossible, effectively locking all leveraged funds.
 
-**D. Strategy Contract Architecture**
+## D. Strategy Contract Architecture
 
 **Core Operations**:
 * Takes user deposits, borrows against them with leverage, claims Venus rewards, compounds everything back into positions
