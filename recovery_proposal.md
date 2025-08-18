@@ -5,7 +5,7 @@
 
 I'm the founder of a BSC project that operated between 2021-2022 as a fork of AutoFarm. AutoFarm had a critical bug in their strategy contract that permanently set token approvals to zero once contracts were paused. This unfortunately caused our contracts to accumulate significant amounts of vBTC, vETH, vBUSD, and other Venus wrapped tokens that became permanently locked within the contract architecture.
 
-The technical root cause is documented in **Data Appendix Section A**, where the `unpause()` function incorrectly maintains zero approvals instead of restoring unlimited approvals, effectively breaking all Venus protocol interactions.
+The technical root cause is documented in [Link Text](./data_appendix.md#a-technical-root-cause) **Data Appendix Section A**, where the `unpause()` function incorrectly maintains zero approvals instead of restoring unlimited approvals, effectively breaking all Venus protocol interactions.
 
 Our affected contracts currently hold **$3.2 million in supplied assets** with **$1.77 million borrowed**, resulting in **$1.43 million net stuck value** across eight different Venus markets (detailed breakdown in **Data Appendix Section B**).
 
