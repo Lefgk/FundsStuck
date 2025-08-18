@@ -49,8 +49,8 @@ I can provide complete proof of ownership and control over the contracts contain
 We have conducted comprehensive testing in forked environments to confirm the exact nature of the approval bug and its impact on all lending-related functions (**[Data Appendix Section C](./data_appendix.md#c-info-on-attempts-to-recover-funds)**).
 
 I would like to move forward with the recovery process as soon as possible and am available to provide any additional documentation, proof of ownership, or technical details required by the Venus protocol team.
-For contact : 
+For further contact :
+
 - Discord -> 5ubse7en
-- Discord: [5ubse7en](https://discord.com/users/5ubse7en)
 - Email -> f0r3x_shark@protonmail.com
 
