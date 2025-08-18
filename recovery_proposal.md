@@ -7,7 +7,8 @@ I'm the founder of a BSC project that operated between 2021-2022 as a fork of Au
 
 The technical root cause is documented in **[Data Appendix Section A](./data_appendix.md#a-technical-root-cause)**, where the `unpause()` function incorrectly maintains zero approvals instead of restoring unlimited approvals, effectively breaking all Venus protocol interactions.
 
-Our affected contracts currently hold **$3.2 million in supplied assets** with **$1.77 million borrowed**, resulting in **$1.43 million net stuck value** across eight different Venus markets (detailed breakdown in **Data Appendix Section B**).
+Our affected contracts currently hold **$3.2 million in supplied assets** with **$1.77 million borrowed**, resulting in **$1.43 million net stuck value** across eight different Venus markets 
+(detailed breakdown in **[Data Appendix Section A](./data_appendix.md#b-affected-contract-details)**).
 
 We are requesting assistance to recover **$1.43 million** in Venus protocol tokens that are permanently stuck in our smart contracts due to an inherited approval bug from AutoFarm's strategy implementation. As the verified owner of both the deployer wallet and affected contracts, we seek Venus protocol team collaboration to unlock these assets and resume normal operations.
 
