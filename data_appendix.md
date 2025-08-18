@@ -46,7 +46,6 @@
 **All functions tested fail with error**: `BEP20: transfer amount exceeds allowance`
 
 Tested functions:
-
 - `deposit()`
 - `withdraw()`
 - `farm()`
@@ -54,6 +53,37 @@ Tested functions:
 - `deleverageOnce()`
 - `deleverageUntilNotOverLevered()`
 - `rebalance()`
+
+### **Scenario 1: Emergency Token Extraction**
+
+Tested `inCaseTokensGetStuck()` function to extract various tokens:
+
+- **vBTC extraction**: Failed with `!safe` error (protected as vTokenAddress)
+- **Venus token extraction**: Failed with `!safe` error (protected as earnedAddress)
+
+**Result**: Core protocol tokens (vBTC, Venus, want tokens) remain stuck due to safety checks.
+
+### **Scenario 2: Complete Position Unwinding**
+
+Attempted forced deleveraging via `rebalance(0, 0)`:
+
+- **Rebalance execution**: Failed with `BEP20: transfer amount exceeds allowance`
+- **Position closure**: Unable to close leveraged positions due to approval issues
+- **Fund liberation**: Leveraged funds remain locked in Venus protocol
+
+**Result**: Complete position unwinding impossible due to broken token approvals preventing Venus interactions.
+
+### **Scenario 3: Manual Deleveraging Steps**
+
+Attempted step-by-step deleveraging approach:
+
+- **`deleverageUntilNotOverLevered()`**: Failed with allowance error
+- **`deleverageOnce()`**: Failed with allowance error on Venus interactions
+- **Manual position reduction**: All Venus-dependent operations blocked
+
+**Result**: Manual deleveraging fails at the same point as automated methods - Venus protocol interactions are blocked by insufficient token approvals.
+
+**Root Cause**: The `unpause()` function bug that sets `wantAddress` approval to 0 instead of unlimited has rendered all Venus protocol interactions impossible, effectively locking all leveraged funds.
 
 ## D. Strategy Contract Architecture
 
