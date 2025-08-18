@@ -44,12 +44,13 @@ This platform launch will drive increased volume and expand the user base for Ve
 
 ## Verification and Next Steps
 
-I can provide complete proof of ownership and control over the contracts containing the stuck tokens. The contract addresses, transaction histories, and technical architecture are fully documented in **Data Appendix Sections B, D, and E**.
+I can provide complete proof of ownership and control over the contracts containing the stuck tokens. The main contract addresses are in **[Data Appendix Section A](./data_appendix.md#b-affected-contract-details)**)
+, and technical architecture are documented in transaction histories
 
-We have conducted comprehensive testing in forked environments to confirm the exact nature of the approval bug and its impact on all lending-related functions (**Data Appendix Section C**).
+We have conducted comprehensive testing in forked environments to confirm the exact nature of the approval bug and its impact on all lending-related functions (**Data Appendix Section C**). [NEED TO DETAIL IN C]
 
 I would like to move forward with the recovery process as soon as possible and am available to provide any additional documentation, proof of ownership, or technical details required by the Venus protocol team.
+For contact : 
+- Discord -> 5ubse7en
+- Email -> f0r3x_shark@protonmail.com
 
----
-
-_For complete technical specifications, contract addresses, historical data, and testing results, please refer to the accompanying Data Appendix document._
