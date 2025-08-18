@@ -43,9 +43,9 @@
 
 ## C. Info on attempts to recover funds
 
-**All functions tested fail with error**: `BEP20: transfer amount exceeds allowance`
+We performed various tests on bsc fork chains using foundry. Most scripts ended with `BEP20: transfer amount exceeds allowance` error.
 
-Tested functions:
+Tested functions (among others):
 - `deposit()`
 - `withdraw()`
 - `farm()`
@@ -53,6 +53,8 @@ Tested functions:
 - `deleverageOnce()`
 - `deleverageUntilNotOverLevered()`
 - `rebalance()`
+
+Some scenarios we tested  :
 
 ### **Scenario 1: Emergency Token Extraction**
 
