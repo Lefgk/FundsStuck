@@ -25,10 +25,12 @@
 ## B. Affected Contract Details
 
 **Primary Token**: RAKE Token Address `0xbDa8D53fe0F164915b46cd2EcfFD94254b6086a2`
+
 **Farm Contract Address**: `0x7f7Bf15B9c68D23339C31652C8e860492991760d`
+
 **Deployer/Owner**: `0x16c7C45725A977ae6530e8dEE73F6da9aE2e7E07`
 
-### Table 1: Venus Protocol Contract Positions
+### Table 1: Venus Strategy Contract Positions
 
 | Contract Address                           | vToken | Total vTokens | Underlying Asset | Supplied | Borrowed | Supplied USD   | Borrowed USD   | Net USD        |
 | ------------------------------------------ | ------ | ------------- | ---------------- | -------- | -------- | -------------- | -------------- | -------------- |
