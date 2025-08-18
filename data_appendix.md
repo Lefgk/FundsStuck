@@ -28,19 +28,7 @@
 
 ### Table 1: Venus Strategy Contract Positions
 
-| Contract Address                           | vToken | Total vTokens | Underlying Asset | Supplied | Borrowed | Supplied USD   | Borrowed USD   | Net USD        |
-| ------------------------------------------ | ------ | ------------- | ---------------- | -------- | -------- | -------------- | -------------- | -------------- |
-| 0xB3bCA2C1c2C4DF2C903BE3F341C96732Ac8b3c12 | vBTC   | 450,000       | BTCB             | 9        | 5        | $1,084,372     | $616,279       | $468,093       |
-| 0x568254EAAC1476faf9A908e577faa3Ab96029801 | vDOT   | 55,000        | DOT              | 1,250    | 616      | $4,825         | $2,379         | $2,446         |
-| 0x7485704d8b6cebd1411f5aafeb063e6f2816069a | vUSDC  | 21,000,000    | USDC             | 544,220  | 328,750  | $544,220       | $328,750       | $215,470       |
-| 0xc6f470da6c284d16647cee2230522a85b0818f6d | vUSDT  | 10,000,000    | USDT             | 257,160  | 156,250  | $257,160       | $156,250       | $100,910       |
-| 0x0b09Efc9458c00354414D2A560aA6EDa19490169 | vLINK  | 230,000       | LINK             | 4,730    | 2,850    | $83,354        | $50,239        | $33,115        |
-| 0x9E3e8878B53c5762Ec6F461701f02ee6d1D9d19C | vETH   | 11,000        | ETH              | 233      | 136      | $875,958       | $511,532       | $364,426       |
-| 0xDF3df3EE9Fb6D5c9B4fdcF80A92D25d2285A859C | vBUSD  | 9,000,000     | BUSD             | 206,750  | 0        | $206,750       | $0             | $206,750       |
-| 0xf498e4C06CcE3bFeaD5f32a69Db3d39af401E122 | vBNB   | 7,000         | BNB              | 184      | 127      | $143,901       | $99,936        | $43,965        |
-| **TOTAL**                                 |        |               |                  |          |          | **$3,196,540** | **$1,765,365** | **$1,431,175** |
-
-| Contract Address                           | vToken | Total vTokens | Underlying Asset | Supplied | Borrowed | Supplied USD | Borrowed USD | Net USD |
+| Contract Address                           | vToken | Total vTokens | Underlying | Supplied | Borrowed | Supplied | Borrowed | Net |
 | ------------------------------------------ | ------ | ------------- | ---------------- | -------- | -------- | ------------ | ------------ | ------- |
 | 0xB3bCA2C1c2C4DF2C903BE3F341C96732Ac8b3c12 | vBTC   | 450K          | BTCB             | 9        | 5        | $1.08M       | $616K        | $468K   |
 | 0x568254EAAC1476faf9A908e577faa3Ab96029801 | vDOT   | 55K           | DOT              | 1.25K    | 616      | $4.8K        | $2.4K        | $2.4K   |
