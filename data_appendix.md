@@ -40,7 +40,7 @@
 | 0xf498e4C06CcE3bFeaD5f32a69Db3d39af401E122 | vBNB   | 7,000         | BNB              | 184      | 127      | $143,901       | $99,936        | $43,965        |
 | **TOTAL**                                 |        |               |                  |          |          | **$3,196,540** | **$1,765,365** | **$1,431,175** |
 
-## C. Failed Recovery Functions
+## C. Info on attempts to recover funds
 
 **All functions tested fail with error**: `BEP20: transfer amount exceeds allowance`
 
