@@ -90,7 +90,7 @@ Tested functions:
 ### Table 3: Complete Daily Trading and Liquidity Data
 
 
-| Date         | BNB Price | RAKE Price | Liquidity Added ($) | Liquidity Removed ($) | Swapped RAKE ($) | Swapped WBNB ($) | Dev Fee Earned       | Venus Rewards        | Cumulative Rewards | Total Stuck Assets |
+| Date         | BNB Price | RAKE Price | Liquidity Added ($) | Liquidity Removed ($) | Swapped RAKE ($) | Swapped WBNB ($) | Dev Fee Earned       | Venus Rewards to stuck Vaults        | Cumulative Rewards | Total Stuck Assets |
 | ------------ | --------- | ---------- | ------------------- | --------------------- | ---------------- | ---------------- | -------------------- | -------------------- | ------------------ | ------------------ |
 | Feb 25, 2021 | $280      | $125,160   | $332,331,149        | $143,391,504          | $2,733,344,502   | $41,104          | 32 RAKE ($3,980,088) | 32 RAKE ($3,977,509) | $3,977,509         | $1,557,670         |
 | Feb 26, 2021 | $260      | $26,000    | $271,132,800        | $89,517,480           | $2,165,993,180   | $226,819         | 32 RAKE ($826,800)   | 32 RAKE ($826,280)   | $4,803,789         | $1,520,000         |
@@ -103,6 +103,9 @@ Tested functions:
 | Mar 05, 2021 | $280      | $1,750     | $1,569,540          | $713,738              | $8,692,289       | $156,120         | 32 RAKE ($55,650)    | 19 RAKE ($32,585)    | $5,896,046         | $1,478,607         |
 | Mar 06, 2021 | $280      | $1,500     | $560,505            | $2,751,435            | $9,085,665       | $258,532         | 32 RAKE ($47,700)    | 19 RAKE ($27,930)    | $5,923,976         | $1,456,891         |
 | Mar 07, 2021 | $280      | $1,400     | $289,786            | $38,002               | $2,514,400       | $89,578          | 32 RAKE ($44,520)    | 19 RAKE ($26,068)    | $5,950,044         | $1,435,175         |
+
+
+
 
 ## Key Trading Insights
 
