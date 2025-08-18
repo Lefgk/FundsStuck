@@ -4,9 +4,8 @@
 
 ## Quick Reference - Table Index
 
-- **[Table 1: Venus Protocol Contract Positions](#table-1-venus-protocol-contract-positions)** - Detailed breakdown of all affected contracts
-- **[Table 2: Daily Protocol Metrics and Rewards](#table-2-daily-protocol-metrics-and-rewards)** - Daily tracking data
-
+- **[Table 1: Venus Strategy Contract Positions](#table-1-venus-strategy-contract-positions)** - Detailed breakdown of all affected contracts
+- **[Table 2: Complete Daily Trading and Liquidity Data](#table-2-complete-daily-trading-and-liquidity-data)** - Full trading analysis
 ---
 
 ## A. Technical Root Cause
@@ -69,7 +68,7 @@ Tested functions:
 
 ## E. RakeFarm LP Pool Analysis
 
-### Table 3: Complete Daily Trading and Liquidity Data
+### Table 2: Complete Daily Trading and Liquidity Data
 
 
 | Date         | BNB Price | RAKE Price | Liquidity Added ($) | Liquidity Removed ($) | Swapped RAKE ($) | Swapped WBNB ($) | Dev Fee Earned       | Venus Rewards to stuck Vaults        | Cumulative Rewards | Total Stuck Assets |
