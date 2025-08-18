@@ -5,9 +5,7 @@
 ## Quick Reference - Table Index
 
 - **[Table 1: Venus Protocol Contract Positions](#table-1-venus-protocol-contract-positions)** - Detailed breakdown of all affected contracts
-- **[Table 2: Key Timeline Milestones](#table-2-key-timeline-milestones)** - Major events and price movements
-- **[Table 3: Daily Protocol Metrics and Rewards](#table-3-daily-protocol-metrics-and-rewards)** - Daily tracking data
-- **[Table 4: Complete Daily Trading and Liquidity Data](#table-4-complete-daily-trading-and-liquidity-data)** - Full trading analysis
+- **[Table 2: Daily Protocol Metrics and Rewards](#table-2-daily-protocol-metrics-and-rewards)** - Daily tracking data
 
 ---
 
