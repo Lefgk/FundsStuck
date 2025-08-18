@@ -25,6 +25,8 @@
 ## B. Affected Contract Details
 
 **Primary Token**: RAKE Token Address `0xbDa8D53fe0F164915b46cd2EcfFD94254b6086a2`
+**Farm Contract Address**: `0x7f7Bf15B9c68D23339C31652C8e860492991760d`
+**Deployer/Owner**: `0x16c7C45725A977ae6530e8dEE73F6da9aE2e7E07`
 
 ### Table 1: Venus Protocol Contract Positions
 
@@ -67,14 +69,6 @@ Tested functions:
 - `rebalance()` → adjusts `borrowRate`/`borrowDepth` strategy parameters
 
 ## E. RakeFarm LP Pool Analysis
-
-**Contract Address**: `0x7f7Bf15B9c68D23339C31652C8e860492991760d`
-
-- **Creation Block Number**: 5181862
-- **Total Pools**: 42
-- **Total Allocation Points**: 8,539
-- **AUTO Per Block**: 8,000,000,000,000,000
-- **Owner**: `0x16c7C45725A977ae6530e8dEE73F6da9aE2e7E07`
 
 ### Table 3: Complete Daily Trading and Liquidity Data
 
