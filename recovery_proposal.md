@@ -1,6 +1,13 @@
 # RAKE Protocol Venus Recovery Proposal
 
-## Executive Summary
+
+## The Issue
+
+I'm the founder of a BSC project that operated between 2021-2022 as a fork of AutoFarm. AutoFarm had a critical bug in their strategy contract that permanently set token approvals to zero once contracts were paused. This unfortunately caused our contracts to accumulate significant amounts of vBTC, vETH, vBUSD, and other Venus wrapped tokens that became permanently locked within the contract architecture.
+
+The technical root cause is documented in **Data Appendix Section A**, where the `unpause()` function incorrectly maintains zero approvals instead of restoring unlimited approvals, effectively breaking all Venus protocol interactions.
+
+Our affected contracts currently hold **$3.2 million in supplied assets** with **$1.77 million borrowed**, resulting in **$1.43 million net stuck value** across eight different Venus markets (detailed breakdown in **Data Appendix Section B**).
 
 We are requesting assistance to recover **$1.43 million** in Venus protocol tokens that are permanently stuck in our smart contracts due to an inherited approval bug from AutoFarm's strategy implementation. As the verified owner of both the deployer wallet and affected contracts, we seek Venus protocol team collaboration to unlock these assets and resume normal operations.
 
@@ -10,13 +17,6 @@ My development partner Lef was working with me on a new project that involves Ve
 
 Our exploration of various recovery methods is detailed in the technical appendix (see **Data Appendix Section C**), where we systematically tested multiple contract functions to identify the exact failure point.
 
-## The Issue
-
-I'm the founder of a BSC project that operated between 2021-2022 as a fork of AutoFarm. AutoFarm had a critical bug in their strategy contract that permanently set token approvals to zero once contracts were paused. This unfortunately caused our contracts to accumulate significant amounts of vBTC, vETH, vBUSD, and other Venus wrapped tokens that became permanently locked within the contract architecture.
-
-The technical root cause is documented in **Data Appendix Section A**, where the `unpause()` function incorrectly maintains zero approvals instead of restoring unlimited approvals, effectively breaking all Venus protocol interactions.
-
-Our affected contracts currently hold **$3.2 million in supplied assets** with **$1.77 million borrowed**, resulting in **$1.43 million net stuck value** across eight different Venus markets (detailed breakdown in **Data Appendix Section B**).
 
 ## Historical Context
 
