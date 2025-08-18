@@ -27,7 +27,7 @@ In 2021, when this issue first occurred, it coincided with Venus's depegging eve
 
 The bug affected our platform very shortly after launch. Fortunately, we had other functioning products, so the stuck Venus vault assets represented approximately 4% of our total value locked (TVL). Since these funds were unable to generate yield for users or the platform, we took immediate action to protect our community.
 
-We successfully refunded all affected stuck users and paid them a premium by diverting team profits earned from our other operational products. This ensured no users suffered financial losses due to the technical issue. After completing user refunds, I shifted focus to other development priorities, as initial attempts to engage Venus support yielded limited progress.
+We successfully compensated all affected stuck users and paid them a premium by diverting team profits earned from our other operational products. This ensured no users suffered financial losses due to the technical issue. After completing user refunds, I shifted focus to other development priorities, as initial attempts to engage Venus support yielded limited progress.
 
 ## Current Development and Recovery Plans
 
@@ -35,9 +35,10 @@ For the past 18 months, I have self-funded development of a unique trading and s
 
 The recovered funds would be allocated toward:
 
-- Professional smart contract audits
+- Complete platform audits, including smart contracts, economic, risk analysis and more
 - Marketing and user acquisition
-- Continued platform development and feature expansion
+- Continued platform development and feature expansion,
+- Comission to developer who helped compile data and draft proposal
 
 This platform launch will drive increased volume and expand the user base for Venus and other key BSC ecosystem contributors we're partnering with.
 
