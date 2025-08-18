@@ -44,7 +44,7 @@ This platform launch will drive increased volume and expand the user base for Ve
 
 ## Verification and Next Steps
 
-I can provide complete proof of ownership and control over the contracts containing the stuck tokens. The main contract addresses are in **[Data Appendix Section B](./data_appendix.md#b-affected-contract-details)**, and technical architecture are documented in transaction histories.
+I can provide complete proof of ownership and control over the contracts containing the stuck tokens. The main contract addresses are in **[Data Appendix Section B](./data_appendix.md#b-affected-contract-details)**, and technical architecture is documented in **[Data Appendix Section B](./data_appendix.md#b-affected-contract-details)**.
 
 We have conducted comprehensive testing in forked environments to confirm the exact nature of the approval bug and its impact on all lending-related functions (**[Data Appendix Section C](./data_appendix.md#c-info-on-attempts-to-recover-funds)**).
 
