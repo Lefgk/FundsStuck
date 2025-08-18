@@ -8,7 +8,7 @@ I'm the founder of a BSC project that operated between 2021-2022 as a fork of Au
 The technical root cause is documented in **[Data Appendix Section A](./data_appendix.md#a-technical-root-cause)**, where the `unpause()` function incorrectly maintains zero approvals instead of restoring unlimited approvals, effectively breaking all Venus protocol interactions.
 
 Our affected contracts currently hold **$3.2 million in supplied assets** with **$1.77 million borrowed**, resulting in **$1.43 million net stuck value** across eight different Venus markets 
-(detailed breakdown in **[Data Appendix Section A](./data_appendix.md#b-affected-contract-details)**).
+(detailed breakdown in **[Data Appendix Section B](./data_appendix.md#b-affected-contract-details)**).
 
 We are requesting assistance to recover **$1.43 million** in Venus protocol tokens that are permanently stuck in our smart contracts due to an inherited approval bug from AutoFarm's strategy implementation. As the verified owner of both the deployer wallet and affected contracts, we seek Venus protocol team collaboration to unlock these assets and resume normal operations.
 
@@ -16,7 +16,7 @@ We are requesting assistance to recover **$1.43 million** in Venus protocol toke
 
 My development partner Lef was working with me on a new project that involves Venus contracts and recognized that a contract owned by me had a significant amount of Venus tokens. This initiated our collaboration to develop a solution for recovering these tokens, as I still maintain full control and ownership of both the deployer wallet and the affected contracts.
 
-Our exploration of various recovery methods is detailed in the technical appendix (see **Data Appendix Section C**), where we systematically tested multiple contract functions to identify the exact failure point.
+Our exploration of various recovery methods is detailed in the technical appendix (see **[Data Appendix Section C](./data_appendix.md#c-info-on-attempts-to-recover-funds)**), where we systematically tested multiple contract functions to identify the exact failure point.
 
 
 ## Historical Context
@@ -44,10 +44,9 @@ This platform launch will drive increased volume and expand the user base for Ve
 
 ## Verification and Next Steps
 
-I can provide complete proof of ownership and control over the contracts containing the stuck tokens. The main contract addresses are in **[Data Appendix Section A](./data_appendix.md#b-affected-contract-details)**)
-, and technical architecture are documented in transaction histories
+I can provide complete proof of ownership and control over the contracts containing the stuck tokens. The main contract addresses are in **[Data Appendix Section B](./data_appendix.md#b-affected-contract-details)**, and technical architecture are documented in transaction histories.
 
-We have conducted comprehensive testing in forked environments to confirm the exact nature of the approval bug and its impact on all lending-related functions (**Data Appendix Section C**). [NEED TO DETAIL IN C]
+We have conducted comprehensive testing in forked environments to confirm the exact nature of the approval bug and its impact on all lending-related functions (**[Data Appendix Section C](./data_appendix.md#c-info-on-attempts-to-recover-funds)**).
 
 I would like to move forward with the recovery process as soon as possible and am available to provide any additional documentation, proof of ownership, or technical details required by the Venus protocol team.
 For contact : 
