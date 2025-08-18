@@ -86,7 +86,7 @@ Tested functions:
 | Mar 07, 2021 | $280      | $1,400     | $289,786            | $38,002               | $2,514,400       | $89,578          | 32 RAKE ($44,520)    | 19 RAKE ($26,068)    | $5,950,044         | $1,435,175         |
 
 ---
-| Date | BNB $ | RAKE $ | Liq Add $ | Liq Rem $ | Swap RAKE $ | Swap WBNB $ | Dev Fee | Venus Rewards | Cum Rewards | Stuck Assets |
+| Date | BNB Price | RAKE Price | Liq Add $ | Liq Rem $ | Swapped RAKE $ | Swapped WBNB $ | Dev Fee | Venus Rewards to stuck Vaults | Cumulative Rewards | Stuck Assets |
 |------|-------|--------|-----------|-----------|-------------|-------------|---------|---------------|-------------|--------------|
 | Feb 25 | $280 | $125K | $332M | $143M | $2.73B | $41K | 32 RAKE ($4.0M) | 32 RAKE ($4.0M) | $4.0M | $1.56M |
 | Feb 26 | $260 | $26K | $271M | $89.5M | $2.17B | $227K | 32 RAKE ($827K) | 32 RAKE ($826K) | $4.8M | $1.52M |
