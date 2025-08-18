@@ -51,5 +51,6 @@ We have conducted comprehensive testing in forked environments to confirm the ex
 I would like to move forward with the recovery process as soon as possible and am available to provide any additional documentation, proof of ownership, or technical details required by the Venus protocol team.
 For contact : 
 - Discord -> 5ubse7en
+- Discord: [5ubse7en](https://discord.com/users/5ubse7en)
 - Email -> f0r3x_shark@protonmail.com
 
