@@ -5,7 +5,7 @@
 ## Quick Reference - Table Index
 
 - **[Table 1: Venus Strategy Contract Positions](#table-1-venus-strategy-contract-positions)** - Detailed breakdown of all affected contracts
-- **[Table 2: Complete Daily Trading and Liquidity Data](#table-2-complete-daily-trading-and-liquidity-data)** - Full trading analysis
+- **[Table 2: Complete Daily Trading and Liquidity Data](#table-2-complete-daily-trading-and-liquidity-data)** - Complete Daily Trading and Liquidity Data
 ---
 
 ## A. Technical Root Cause
