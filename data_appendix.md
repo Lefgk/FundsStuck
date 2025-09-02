@@ -138,7 +138,7 @@ Attempted step-by-step deleveraging approach:
 
 ---
 
-## F. Data Sources
+## F. Data Sources (as of 1st of August 2025)
 
 - RAKE/BNB price: [CoinMarketCap DEX](https://dex.coinmarketcap.com/token/bsc/0xbda8d53fe0f164915b46cd2ecffd94254b6086a2/)
 - BNB/USD price: [CoinMarketCap](https://coinmarketcap.com/currencies/bnb/)
