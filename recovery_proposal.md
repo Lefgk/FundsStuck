@@ -7,7 +7,7 @@ I'm the founder of a BSC project that operated between 2021-2022 as a fork of Au
 
 The technical root cause is documented in **[Data Appendix Section A](./data_appendix.md#a-technical-root-cause)**, where the `unpause()` function incorrectly maintains zero approvals instead of restoring unlimited approvals, effectively breaking all Venus protocol interactions.
 
-Our affected contracts currently hold **$3.2 million in supplied assets** with **$1.77 million borrowed**, resulting in **$1.43 million net stuck value** across eight different Venus markets 
+Our affected contracts currently hold (as of 1st August 2025) **$3.2 million in supplied assets** with **$1.77 million borrowed**, resulting in **$1.43 million net stuck value** across eight different Venus markets 
 (detailed breakdown in **[Data Appendix Section B](./data_appendix.md#b-affected-contract-details)**).
 
 We are requesting assistance to recover **$1.43 million** in Venus protocol tokens that are permanently stuck in our smart contracts due to an inherited approval bug from AutoFarm's strategy implementation. As the verified owner of both the deployer wallet and affected contracts, we seek Venus protocol team collaboration to unlock these assets and resume normal operations.
@@ -21,13 +21,13 @@ Our exploration of various recovery methods is detailed in the technical appendi
 
 ## Historical Context
 
-In 2021, when this issue first occurred, it coincided with Venus's depegging event, which was ultimately resolved through Binance's intervention. We had reached out at the time, but due to the depegging crisis and the overwhelming volume of support tickets, the Venus team was unable to provide assistance with our specific technical issue, resulting in minimal progress toward resolution.
+In 2021, when this issue first occurred, it coincided with Venus's depegging event, which was ultimately resolved through Binance's intervention. I had reached out at the time, but due to the depegging crisis and the overwhelming volume of support tickets, the Venus team was unable to provide assistance with my specific technical issue, resulting in minimal progress toward resolution.
 
 ## User Refund and Impact Mitigation
 
-The bug affected our platform very shortly after launch. Fortunately, we had other functioning products, so the stuck Venus vault assets represented approximately 4% of our total value locked (TVL). Since these funds were unable to generate yield for users or the platform, we took immediate action to protect our community.
+The bug affected our platform very shortly after launch. Fortunately, I had other functioning products, so the stuck Venus vault assets represented approximately 4% of our total value locked (TVL). Since these funds were unable to generate yield for users or the platform, I took immediate action to protect our community.
 
-We successfully compensated all affected users on the day the funds were stuck with our native token RAKE at over a 2x premium, allowing them to claim and sell their RAKE tokens to recover their stuck principle and continue to participate in our other products if they choose to do so.  As a team we also abstained from selling any dev fee or team RAKE tokens. This ensured no users suffered financial losses due to the technical issue. Over $2B RAKE was swapped on that day for BNB showing that there was sufficient liquidity if stuck users wanted to sell their RAKE for significantly more than their stuck principle and leave the project. We provided the relevant data for a week after the funds were stuck to show their compensated RAKE tokens could have been used to recover their principle and over a 2x premium at any time.  (see **[Data Appendix Table 2](./data_appendix.md#table-2-complete-daily-trading-and-liquidity-data)**) .
+I successfully compensated all affected users on the day the funds were stuck with our native token RAKE at over a 2x premium, allowing them to claim and sell their RAKE tokens to recover their stuck principle and continue to participate in our other products if they choose to do so.  As a team we also abstained from selling any dev fee or team RAKE tokens. This ensured no users suffered financial losses due to the technical issue. Over $2B RAKE was swapped on that day for BNB showing that there was sufficient liquidity if stuck users wanted to sell their RAKE for significantly more than their stuck principle and leave the project. We provided the relevant data for a week after the funds were stuck to show their compensated RAKE tokens could have been used to recover their principle and over a 2x premium at any time.  (see **[Data Appendix Table 2](./data_appendix.md#table-2-complete-daily-trading-and-liquidity-data)**) .
 After completing user compensation, I shifted focus to other development priorities, as initial attempts to engage Venus support yielded limited progress and our primary goal of compensating stuck users was successfully completed. 
 
 ## Current Development and Recovery Plans
