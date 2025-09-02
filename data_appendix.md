@@ -120,9 +120,7 @@ Attempted step-by-step deleveraging approach:
 
 ## E. RakeFarm LP Pool Analysis
 
-### Table 2: Complete Daily Trading and Liquidity Data
-
-| Date | BNB Price | RAKE Price | Liq Add $ | Liq Rem $ | Swapped RAKE $ | Swapped WBNB $ | Dev Fee | Venus Rewards to stuck Vaults | Cumulative Rewards | Assets Stuck  |
+| Date | BNB Price | RAKE Price | Liq Add $ | Liq Rem $ | Swapped RAKE $ | Swapped WBNB $ | Dev Fee | Daily Compensation to stuck vaults | Cumulative Compensation Value | Stuck Asset value |
 |------|-------|--------|-----------|-----------|-------------|-------------|---------|---------------|-------------|--------------|
 | Feb 25 | $280 | $125K | $332M | $143M | $2.73B | $41K | 32 RAKE ($4.0M) | 32 RAKE ($4.0M) | $4.0M | $1.56M |
 | Feb 26 | $260 | $26K | $271M | $89.5M | $2.17B | $227K | 32 RAKE ($827K) | 32 RAKE ($826K) | $4.8M | $1.52M |
