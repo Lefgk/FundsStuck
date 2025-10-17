@@ -26,7 +26,7 @@
 
 
 
-### Table 1: Venus Strategy Contract Positions
+### Table 1: Venus Strategy Contract Positions (data taken 15th August 2025)
 
 | Contract Address | vToken | Total vTokens | Underlying | Supplied | Borrowed | Supplied USD | Borrowed USD | Net USD |
 |------------------|--------|---------------|------------|----------|----------|--------------|--------------|---------|
