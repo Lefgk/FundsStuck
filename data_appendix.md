@@ -122,11 +122,9 @@ Attempted step-by-step deleveraging approach:
  - `_leverage()` fails - cannot build positions
  - `_deleverage()` fails - cannot unwind positions
 
+# RakeFarm LP Pool Analysis 
 
-
-## E. RakeFarm LP Pool Analysis 
-
-| Date (2021) | BNB Price¹ | RAKE Price² | Liq Add $³ | Liq Rem $³ | Swapped RAKE $⁴ | Swapped WBNB $⁴ | Dev Fee RAKE⁵| Daily Compensation to stuck vaults⁵ | Cumulative Compensation Value | Stuck Asset value⁵ |
+| Date (2021) | BNB Price¹ | RAKE Price² | Liq Add $³ | Liq Rem $³ | Swapped RAKE $⁴ | Swapped WBNB $⁴ | Dev Fee RAKE⁵| Daily Comp⁵ | Cumulative Comp | Stuck Assets⁵ |
 |------|-------|--------|-----------|-----------|-------------|-------------|---------|---------------|-------------|--------------|
 | Feb 25 | $280 | $125K | $332M | $143M | $2.73B | $41K | 32 ($4.0M) | 32 ($4.0M) | $4.0M | $1.56M |
 | Feb 26 | $260 | $26K | $271M | $89.5M | $2.17B | $227K | 32 ($827K) | 32 ($826K) | $4.8M | $1.52M |
