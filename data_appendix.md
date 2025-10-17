@@ -44,7 +44,7 @@
 - **Total Supplied:** $3.20M
 - **Total Borrowed:** $1.77M  
 - **Net Position:** $1.43M
-- **Number of Positions:** 8 contracts across major DeFi tokens
+- 
 ## C. Info on attempts to recover funds
 
 We performed various tests on bsc fork chains using foundry. Most scripts ended with `BEP20: transfer amount exceeds allowance` error.
