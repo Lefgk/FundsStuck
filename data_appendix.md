@@ -122,9 +122,9 @@ Attempted step-by-step deleveraging approach:
  - `_leverage()` fails - cannot build positions
  - `_deleverage()` fails - cannot unwind positions
 
-## E. RakeFarm LP Pool Analysis
+## E. RakeFarm LP Pool Analysis 
 
-| Date | BNB Price | RAKE Price | Liq Add $ | Liq Rem $ | Swapped RAKE $ | Swapped WBNB $ | Dev Fee RAKE| Daily Compensation to stuck vaults | Cumulative Compensation Value | Stuck Asset value |
+| Date (2021) | BNB Price | RAKE Price | Liq Add $ | Liq Rem $ | Swapped RAKE $ | Swapped WBNB $ | Dev Fee RAKE| Daily Compensation to stuck vaults | Cumulative Compensation Value | Stuck Asset value |
 |------|-------|--------|-----------|-----------|-------------|-------------|---------|---------------|-------------|--------------|
 | Feb 25 | $280 | $125K | $332M | $143M | $2.73B | $41K | 32 ($4.0M) | 32 ($4.0M) | $4.0M | $1.56M |
 | Feb 26 | $260 | $26K | $271M | $89.5M | $2.17B | $227K | 32 ($827K) | 32 ($826K) | $4.8M | $1.52M |
@@ -140,7 +140,7 @@ Attempted step-by-step deleveraging approach:
 
 ---
 
-## F. Data Sources (as of 1st of August 2025)
+## F. Data Sources
 
 - RAKE/BNB price: [CoinMarketCap DEX](https://dex.coinmarketcap.com/token/bsc/0xbda8d53fe0f164915b46cd2ecffd94254b6086a2/)
 - BNB/USD price: [CoinMarketCap](https://coinmarketcap.com/currencies/bnb/)
