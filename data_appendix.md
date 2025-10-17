@@ -124,7 +124,7 @@ Attempted step-by-step deleveraging approach:
 
 # RakeFarm LP Pool Analysis 
 
-| Date (2021) | BNB Price¹ | RAKE Price² | Liq Add $³ | Liq Rem $³ | Swapped RAKE $⁴ | Swapped WBNB $⁴ | Dev Fee RAKE⁵| Daily Comp⁵ | Cumulative Comp | Stuck Assets⁵ |
+| Date (2021) | BNB Price¹ | RAKE Price¹,² | Liq Add⁴ $ | Liq Rem⁴ $ | Swapped RAKE⁴ $ | Swapped WBNB⁴ $ | Dev Fee RAKE⁵| Daily Comp⁵ | Cumulative Comp | Stuck Assets⁵ |
 |------|-------|--------|-----------|-----------|-------------|-------------|---------|---------------|-------------|--------------|
 | Feb 25 | $280 | $125K | $332M | $143M | $2.73B | $41K | 32 ($4.0M) | 32 ($4.0M) | $4.0M | $1.56M |
 | Feb 26 | $260 | $26K | $271M | $89.5M | $2.17B | $227K | 32 ($827K) | 32 ($826K) | $4.8M | $1.52M |
