@@ -1,0 +1,12 @@
+# Secrets
+.env
+.env.*
+
+# Local Foundry test suite (kept private)
+/foundry-test
+
+# OS / editor junk
+.DS_Store
+.vscode/
+.idea/
+*.swp
