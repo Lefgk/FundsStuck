@@ -5,6 +5,7 @@
 ## Quick Reference - Table Index
 
 - **[Table 1: Venus Strategy Contract Positions](#table-1-venus-strategy-contract-positions-live-on-chain-data---july-2026)** - Detailed breakdown of all affected contracts (live on-chain data)
+- **[Why vBNB (pid 8) is excluded](#why-vbnb-pid-8-is-excluded)** - vBNB is also stuck, but from a separate defect Venus cannot fix
 - **[Table 2: Complete Daily Trading and Liquidity Data](#table-2-complete-daily-trading-and-liquidity-data)** - Complete Daily Trading and Liquidity Data
 - **[Section E: On-Chain Verification Commands](#e-on-chain-verification-commands)** - Commands to verify stuck funds
 - **[Proof of Ownership (on-chain)](#proof-of-ownership-on-chain)** - Every strategy's `govAddress()` maps to the requester's gov address
@@ -21,7 +22,36 @@
 - `unpause()` function incorrectly sets: `IERC20(wantAddress).safeApprove(vTokenAddress, 0)`
 - **Correct implementation should be**: `IERC20(wantAddress).safeApprove(vTokenAddress, uint256(-1))`
 
-**Impact**: Permanently locks approval at zero, preventing all Venus Protocol interactions.
+**Impact**: Permanently locks the `want → vToken` approval at zero on the **seven ERC-20 strategies** (pids 9–15), so every strategy operation that moves the underlying into or out of Venus reverts `BEP20: transfer amount exceeds allowance` (Section C). The affected code path is guarded by `if (!wantIsWBNB)` and so never executes on the native-BNB strategy.
+
+### Two independent locks on the ERC-20 pools
+
+A user attempting to exit one of these pools hits **two** distinct locks, and both must be cleared:
+
+1. **Venus's own action pause on the deprecated market (hit first).** `withdraw(9, 1e18)` on the vBUSD pool reverts with **`action is paused`**. That is the Venus **Comptroller's** error string — it is not the strategy's `Pausable`, which reverts with `Pausable: paused`. A Venus engineer can confirm the string is theirs. This lock is a consequence of the market deprecation described in Section F, and it is Venus-side parameter state.
+2. **The zero allowance from `unpause()` (independent).** Even with the action pause lifted, every path that moves the underlying still reverts on the allowance — the strategy has no function that can restore it, because it is not upgradeable and `inCaseTokensGetStuck()` protects `wantAddress` (Section C).
+
+This appendix and the recovery request concern lock 2, which the strategy cannot repair on its own at any price. Lock 1 is stated here so the picture is complete and so the two error strings are not confused.
+
+### Why the approval bug cannot reach the native-BNB market (reproducible)
+
+A zero `want → vToken` allowance only matters if the vToken pulls the underlying with `transferFrom`. That is true exactly when the market has an ERC-20 `underlying()`. The native-BNB market has none — its `mint()` is `payable` — so no allowance is ever consulted and no allowance can be set wrong. The distinguishing test is one call per market:
+
+```bash
+RPC=https://bsc-dataseed.binance.org
+
+# a FROZEN market — vBTC has an ERC-20 underlying, so mint() pulls via transferFrom
+cast call 0x882C173bC7Ff3b7786CA16dfeD3DFFfb9Ee7847B "underlying()(address)" --rpc-url $RPC
+# -> 0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c   (BTCB)  => needs an allowance, which is 0 => bricked
+
+# vBNB has NO underlying() function at all — it is the native-BNB market
+cast call 0xA07c5b74C9B40447a954e1466938b865b6BBea36 "underlying()(address)" --rpc-url $RPC
+# -> reverts / no such function.  mint() is payable; no transferFrom; no allowance is ever consulted
+```
+
+Confirmed live on BSC (chain id 56) for the vBNB strategy `0xf498e4C06CcE3bFeaD5f32a69Db3d39af401E122`: its `wantAddress()` is `0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c` (WBNB), and its WBNB → vBNB allowance *is* zero — but that approval is a **no-op**, because vBNB never calls `transferFrom`. The same zero allowance that bricks the seven ERC-20 strategies is inert there.
+
+**This does not mean the vBNB pool is fine.** It is also stuck, for an unrelated reason — an arithmetic underflow in RAKE's own strategy code. See "Why vBNB (pid 8) is excluded" below. The scope of this request is the seven pools that share the approval root cause; vBNB is a separate defect and is pursued separately.
 
 ## B. Affected Contract Details
 
@@ -34,7 +64,7 @@
 ### Table 1: Venus Strategy Contract Positions (Live On-Chain Data - July 2026)
 
 **Verified on-chain:** 24 July 2026 (BSC mainnet)
-**Prices Used (spot):** BTC $64,903 | ETH $1,882 | BNB $566.50 | LINK $8.46 | DOT $0.80 | Stables $1.00
+**Prices Used (spot):** BTC $64,076.26 | ETH $1,895.19 | BNB $566.50 | LINK $8.29 | DOT $0.76 | BUSD $1.00 | USDT $0.998773 | USDC $0.999746
 
 | Contract Address | vToken | Underlying | Supplied | Borrowed | Net | Supplied USD | Borrowed USD | Net USD |
 |------------------|--------|------------|----------|----------|-----|--------------|--------------|---------|
@@ -43,21 +73,36 @@
 | [0x7485...069A](https://bscscan.com/address/0x7485704d8B6cEBd1411F5AAfEB063e6f2816069A) | vUSDC | USDC | 560,872 | 345,364 | 215,508 | $560,828 | $345,335 | $215,493 |
 | [0xDF3d...859C](https://bscscan.com/address/0xDF3df3EE9Fb6D5c9B4fdcF80A92D25d2285A859C) | vBUSD | BUSD | 206,755 | 0 | 206,755 | $206,298 | $0 | $206,298 |
 | [0xc6f4...8f6D](https://bscscan.com/address/0xc6f470dA6C284D16647CEE2230522a85b0818f6D) | vUSDT | USDT | 264,646 | 163,973 | 100,673 | $264,450 | $163,851 | $100,600 |
-| [0xf498...e122](https://bscscan.com/address/0xf498e4C06CcE3bFeaD5f32a69Db3d39af401E122) | vBNB | BNB | 184.49 | 129.36 | 55.13 | $104,513 | $73,281 | $31,232 |
 | [0x0b09...0169](https://bscscan.com/address/0x0b09Efc9458c00354414D2A560aA6EDa19490169) | vLINK | LINK | 4,736.05 | 2,926.23 | 1,809.82 | $40,067 | $24,756 | $15,311 |
 | [0x5682...9801](https://bscscan.com/address/0x568254EAAC1476faf9A908e577faa3Ab96029801) † | vDOT | DOT | 424.69 | 0.41 | 424.28 | $341 | $0 | $340 |
-| **TOTAL** | | | | | | **~$2.22M** ($2,216,939) | **~$1.21M** ($1,211,242) | **~$1.01M** ($1,005,696) |
+| **TOTAL** | | | | | | **~$2.11M** ($2,107,606) | **~$1.14M** ($1,135,169) | **~$972K** ($972,437) |
 
 † vDOT was liquidated by Venus's market deprecation in July 2026 — see Section F.
 
 *Per-row USD is rounded to the nearest dollar; the TOTAL is computed from unrounded values.*
 
-## Summary
-- **Total Supplied:** ~$2.22M ($2,216,939)
-- **Total Borrowed:** ~$1.21M ($1,211,242)
-- **Net Position:** ~$1.01M ($1,005,696) at current spot prices
+### Why vBNB (pid 8) is excluded
 
-*Note: USD values fluctuate with market prices — the net figure floats with the market and was ~$1.26M at January 2026 prices. Token quantities are on-chain and accrue interest every block (supplied grows at supply APY, borrowed at the higher borrow APY), so the underlying amounts drift slightly upward over time while net underlying is roughly flat.*
+The farm ran **eight** Venus leveraged strategies (pids 8–15). Table 1 covers the **seven ERC-20 strategies** (pids 9–15), which share the single approval root cause in Section A. The eighth, vBNB (`0xf498e4C06CcE3bFeaD5f32a69Db3d39af401E122`, pid 8), is excluded because it is stuck for a **different reason**, not because it is unaffected.
+
+**The vBNB position is still stuck.** 184.493698 BNB supplied / 129.373745 borrowed, **55.119953 BNB net (~$31,225)** across **69 positions**. Verified on-chain:
+
+- `RakeFarm.withdraw(8, 1)` from a real holder reverts **`SafeMath: subtraction overflow`**.
+- Simulated from the gov wallet, `deleverageOnce()` and `deleverageUntilNotOverLevered()` revert with the **same underflow**. The deleverage path cannot clear it unaided. The deleverage path is unusable; unbricking it requires paying down the Venus borrow from outside the contract, which is a separate exercise and not part of this request.
+- Only `withdraw(8, 0)` (harvest) succeeds.
+
+**Cause — an over-leverage arithmetic underflow in RAKE's own strategy, not the approval bug.** The strategy targets `borrowRate` 585 (0.585) with `BORROW_RATE_MAX` 595, but the live position sits at 129.373745 / 184.493698 = **0.7012**, above its own ceiling. It drifted there over five years because borrow interest outran supply interest (**+29.25 BNB** of debt against **+20.62 BNB** of supply). The unwind path then computes the required supply as 129.373745 / 0.585 = **221.15 BNB**, subtracts it from the actual 184.49, goes negative, and SafeMath reverts. There is no branch handling a position that is *already* over the limit.
+
+Venus cannot fix an arithmetic underflow in a third-party contract, so this pool is not part of the Venus request and is excluded from every total in this document. It is being pursued separately.
+
+## Summary
+- **Total Supplied:** ~$2.11M ($2,107,606)
+- **Total Borrowed:** ~$1.14M ($1,135,169)
+- **Net Position:** ~$972K ($972,437) at current spot prices
+
+*Note: USD values fluctuate with market prices, so the net figure floats with the market. Token quantities are on-chain and accrue interest every block, and because these are deprecated markets carrying a punitive borrow curve, the debt compounds faster than the supply: both legs drift upward, but the borrowed leg outruns the supplied leg, so **net underlying drifts slightly downward** over time.*
+
+*An earlier revision of this note cited a net of ~$1.26M at January 2026 prices. That figure was computed on the **eight**-pool basis, including vBNB, and has not been restated for the seven pools — it is left here unrevised rather than re-estimated, and should not be compared against the $972,437 above.*
 
 ## C. Info on attempts to recover funds
 
@@ -179,14 +224,6 @@ cast call 0xfD5840Cd36d94D7229439859C0112a4185BC0255 \
   "borrowBalanceCurrent(address)(uint256)" 0xc6f470da6c284d16647cee2230522a85b0818f6d \
   --rpc-url https://bsc-dataseed.binance.org
 
-# ========== vBNB Strategy ==========
-cast call 0xA07c5b74C9B40447a954e1466938b865b6BBea36 \
-  "balanceOfUnderlying(address)(uint256)" 0xf498e4C06CcE3bFeaD5f32a69Db3d39af401E122 \
-  --rpc-url https://bsc-dataseed.binance.org
-cast call 0xA07c5b74C9B40447a954e1466938b865b6BBea36 \
-  "borrowBalanceCurrent(address)(uint256)" 0xf498e4C06CcE3bFeaD5f32a69Db3d39af401E122 \
-  --rpc-url https://bsc-dataseed.binance.org
-
 # ========== vLINK Strategy ==========
 cast call 0x650b940a1033B8A1b1873f78730FcFC73ec11f1f \
   "balanceOfUnderlying(address)(uint256)" 0x0b09Efc9458c00354414D2A560aA6EDa19490169 \
@@ -214,28 +251,29 @@ cast call 0x95c78222B3D6e262426483D42CfA53685A67Ab9D \
 
 ### Proof of Ownership (on-chain)
 
-Every one of the 8 strategy contracts returns `govAddress()` equal to the requester's gov address `0x16c7C45725A977ae6530e8dEE73F6da9aE2e7E07`, which proves control of the strategies. Anyone can confirm this:
+Every one of the 7 frozen ERC-20 strategy contracts returns `govAddress()` equal to the requester's gov address `0x16c7C45725A977ae6530e8dEE73F6da9aE2e7E07`, which proves control of the strategies. Anyone can confirm this:
 
 ```bash
-for s in 0xB3bCA2C1c2C4DF2C903BE3F341C96732Ac8b3c12 0x9E3e8878B53c5762Ec6F461701f02ee6d1D9d19C 0x7485704d8B6cEBd1411F5AAfEB063e6f2816069A 0xDF3df3EE9Fb6D5c9B4fdcF80A92D25d2285A859C 0xc6f470dA6C284D16647CEE2230522a85b0818f6D 0xf498e4C06CcE3bFeaD5f32a69Db3d39af401E122 0x0b09Efc9458c00354414D2A560aA6EDa19490169 0x568254EAAC1476faf9A908e577faa3Ab96029801; do
+for s in 0xB3bCA2C1c2C4DF2C903BE3F341C96732Ac8b3c12 0x9E3e8878B53c5762Ec6F461701f02ee6d1D9d19C 0x7485704d8B6cEBd1411F5AAfEB063e6f2816069A 0xDF3df3EE9Fb6D5c9B4fdcF80A92D25d2285A859C 0xc6f470dA6C284D16647CEE2230522a85b0818f6D 0x0b09Efc9458c00354414D2A560aA6EDa19490169 0x568254EAAC1476faf9A908e577faa3Ab96029801; do
   cast call $s "govAddress()(address)" --rpc-url https://bsc-dataseed.binance.org
 done
 # each returns 0x16c7C45725A977ae6530e8dEE73F6da9aE2e7E07
 ```
 
-The 8 strategy addresses:
+The 7 strategy addresses:
 - `0xB3bCA2C1c2C4DF2C903BE3F341C96732Ac8b3c12` (vBTC)
 - `0x9E3e8878B53c5762Ec6F461701f02ee6d1D9d19C` (vETH)
 - `0x7485704d8B6cEBd1411F5AAfEB063e6f2816069A` (vUSDC)
 - `0xDF3df3EE9Fb6D5c9B4fdcF80A92D25d2285A859C` (vBUSD)
 - `0xc6f470dA6C284D16647CEE2230522a85b0818f6D` (vUSDT)
-- `0xf498e4C06CcE3bFeaD5f32a69Db3d39af401E122` (vBNB)
 - `0x0b09Efc9458c00354414D2A560aA6EDa19490169` (vLINK)
 - `0x568254EAAC1476faf9A908e577faa3Ab96029801` (vDOT)
 
+The same call returns the same gov address for the eighth (vBNB) strategy `0xf498e4C06CcE3bFeaD5f32a69Db3d39af401E122`, which is **not** part of this request — see "Why vBNB (pid 8) is excluded" above.
+
 ### Table 2: Complete Daily Trading and Liquidity Data
 
-| Date (2021) | BNB Price | RAKE Price (VWAP) | Liq Add $ | Liq Removed $ | Swapped RAKE $ | Swapped BNB $ | Dev Fee RAKE | Daily Comp | Cumulative Comp | Stuck Assets |
+| Date (2021) | BNB Price | RAKE Price (VWAP) | Liq Add $ | Liq Removed $ | Swapped RAKE $ | Swapped BNB $ | Dev Fee RAKE | Daily Comp | Cumulative Comp | Stuck Assets ‡ |
 |-------------|-----------|-------------------|-----------|-----------|----------------|---------------|--------------|------------|-----------------|--------------|
 | Feb 25 | $245 | $43.3K | $1.24M | $541K | $5.18M | $4.74M | 32 ($1.4M) | 32 ($1.4M) | $1.4M | $1.56M |
 | Feb 26 | $228 | $22.7K | $4.71M | $1.64M | $19.8M | $19.1M | 32 ($727K) | 32 ($727K) | $2.1M | $1.52M |
@@ -257,6 +295,19 @@ The 8 strategy addresses:
 - **Dev Fee RAKE**: Platform fees earned in RAKE tokens (never sold, preserving liquidity for users)
 - **Daily Comp**: RAKE tokens distributed as compensation to users with stuck funds
 - **Cumulative Comp**: Running total of compensation distributed at daily RAKE prices
+- **Stuck Assets ‡**: **UNDOCUMENTED LEGACY ESTIMATE — NOT REPRODUCED.** See the note below before citing it.
+
+**‡ On the "Stuck Assets" column.** These values carry no derivation. They arrived with an earlier revision of this appendix, have **not** been reproduced from any source data in this repository, and no methodology for them was ever recorded. Three specific problems:
+
+- They are denominated in **2021 dollars**, whereas every other valuation in this pack is at the 24 July 2026 spot prices listed under Table 1.
+- They do **not** reconcile with the frozen-principal figures used elsewhere in this pack, and are materially larger than them.
+- They cover the **eight**-pool group, so they cannot be compared against the seven-pool totals in Table 1 even after converting the basis.
+
+The column is retained here only so that nothing is lost, and it is **not relied on anywhere in the recovery request**. Do not cite it as evidence. Reconstructing a defensible 2021-basis figure would require archival on-chain state that this repository does not contain — it has deliberately not been estimated.
+
+*Scope of the Daily Comp column:* the per-day rows are not split by pool, so they are stated here only as the raw source series. The figure this pack actually uses is **165.188 RAKE** — the amount the **seven frozen ERC-20 pools** paid to the **103 external wallets that are still frozen** over the first seven days. The derivation from the source series, for traceability: of the 237.111 RAKE the eight strategy pools earned in that period, pid 8 (vBNB) took 48.634, leaving 188.477 across the seven pools in this request; of that, 23.288 went to the operator's own gov wallet `0x16c7C45725A977ae6530e8dEE73F6da9aE2e7E07`, whose only remaining position was pid-8 dust. Excluding the operator's own emissions leaves **165.188 RAKE**.
+
+Valued from the swap receipts — each day's emissions at the BNB-per-RAKE rate those wallets actually achieved that day — the 165.188 RAKE came to **5,050.1 BNB by day seven**, having passed the $972,437 of frozen principal on **day five, 2 March 2021** at 4,467.2 BNB. By 25 March 2021 the seven pools had paid **486.975 RAKE**, worth **5,884.1 BNB**. No 8-pool figure is relied on anywhere in this pack.
 
 ---
 

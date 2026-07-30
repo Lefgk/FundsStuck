@@ -1,10 +1,19 @@
 # Stuck Funds Analysis Report - RAKE Protocol
 
-> **⚠️ Archival snapshot.** The figures in this file are the original/historical analysis (the ~$1.43M era) and are **superseded** by the current on-chain data (verified 24 July 2026) in [`../data_appendix.md`](../data_appendix.md), [`../recovery_proposal.md`](../recovery_proposal.md), and [`../VENUS_RECOVERY_REQUEST.md`](../VENUS_RECOVERY_REQUEST.md). Notably, the vDOT position has since been largely liquidated by Venus's market deprecation. This document is kept for reference only — refer to those top-level documents for the authoritative numbers.
+> **⚠️ Archival snapshot.** The figures in this file are the original/historical analysis and are **superseded** by the current on-chain data (verified 24 July 2026) in [`../data_appendix.md`](../data_appendix.md), [`../recovery_proposal.md`](../recovery_proposal.md), and [`../VENUS_RECOVERY_REQUEST.md`](../VENUS_RECOVERY_REQUEST.md). Notably, the vDOT position has since been largely liquidated by Venus's market deprecation. This document is kept for reference only — refer to those top-level documents for the authoritative numbers.
+>
+> **Scope: vBNB is excluded — but it is still stuck.** The CSVs in this directory cover the **seven ERC-20 strategies (pids 9–15)** bricked by the `unpause()` approval bug; their pid-8 rows have been removed. vBNB (`0xf498e4C06CcE3bFeaD5f32a69Db3d39af401E122`, pid 8) is excluded because it is stuck for a **different reason**, not because it is recoverable. vBNB takes *native BNB* through a `payable mint()`, so its strategy never held a `want → vToken` ERC-20 approval and the approval bug is not what holds it. What holds it is an over-leverage arithmetic underflow: the strategy targets `borrowRate` 585 (0.585) against a `BORROW_RATE_MAX` of 595, but the live position is 184.493698 BNB supplied / 129.373745 borrowed — a ratio of **0.7012, past its own ceiling** — after five years of borrow interest outrunning supply interest. Unwinding needs 129.373745 / 0.585 = 221.15 BNB of supply, subtracts it from the actual 184.49, and underflows. `withdraw(8, 1)` reverts `SafeMath: subtraction overflow` for holders, and `deleverageOnce()` / `deleverageUntilNotOverLevered()` revert the same way for the operator, so **it cannot be fixed with existing functions**. Only the `withdraw(8, 0)` harvest works. Different bug, different remedy — do not describe vBNB as unaffected or withdrawable.
 
 ## Executive Summary
 
-We had a project that was a fork of AutoFarm that now has **$1.43 million** of Vtokens stuck due to a approval bug inherited from AutoFarm's strategy contract. This bug permanently set approvals to 0 once the contract was paused. The contracts cannot perform any Venus lending operations due to zero token approvals.
+We had a project that was a fork of AutoFarm with **$972,437.14** of net Venus equity stuck across seven ERC-20 strategies, due to an approval bug inherited from AutoFarm's strategy contract. This bug permanently set approvals to 0 once the contract was paused. The contracts cannot perform any Venus lending operations due to zero token approvals.
+
+**On the old "$1.43 million" headline.** That figure was this file's own Affected Contracts table below, and **its price and date basis was never documented anywhere in the repo** — the numbers imply neither Feb-2021 nor Jul-2026 prices, so it cannot be reproduced or rebased. It also included vBNB. Two things to know when comparing it to $972,437.14:
+
+- **Basis, not shrinkage.** $972,437.14 is *net* Venus equity (supplied minus borrowed) at the verified 24 Jul 2026 snapshot — BSC block 112,835,163, BTC $64,076.26 / ETH $1,895.19 / BNB $566.50 / LINK $8.29 / DOT $0.76 / BUSD 1.00 / USDT 0.998773 / USDC 0.999746 — from $2,107,605.64 supplied against $1,135,168.51 borrowed. The $1.43M was a different, undocumented snapshot.
+- **vBNB accounts for only part of the gap.** Removing the vBNB row drops the table's net from $1,435,175 to **$1,391,210**. The remaining difference is price movement and interest accrual between the two undated snapshots, which cannot be attributed without knowing the old basis.
+
+Treat $1.43M as a legacy estimate and cite **$972,437.14** instead.
 
 ## Root Cause Analysis
 
@@ -40,8 +49,42 @@ Automated leveraged yield farming on Venus that:
 | 0x0b09Efc9458c00354414D2A560aA6EDa19490169 | vLINK | 230,000 | LINK | 4,730 | 2,850 | $83,354 | $50,239 | $33,115 |
 | 0x9E3e8878B53c5762Ec6F461701f02ee6d1D9d19C | vETH | 11,000 | ETH | 232.68 | 135.84 | $875,958 | $511,532 | $364,426 |
 | 0xDF3df3EE9Fb6D5c9B4fdcF80A92D25d2285A859C | vBUSD | 9,000,000 | BUSD | 206,750 | 0 | $206,750 | $0 | $206,750 |
-| 0xf498e4C06CcE3bFeaD5f32a69Db3d39af401E122 | vBNB | 7,000 | BNB | 183.6 | 127.46 | $143,901 | $99,936 | $43,965 |
-| **TOTALS** | | | | | | **$3,196,540** | **$1,765,365** | **$1,431,175** |
+| **TOTALS (7 frozen strategies)** | | | | | | **$3,056,639** | **$1,665,429** | **$1,391,210** |
+
+The vBNB row is removed: `0xf498e4C06CcE3bFeaD5f32a69Db3d39af401E122` · 183.6 BNB supplied / 127.46 borrowed · $143,901 / $99,936 / **$43,965 net** on this table's own undocumented basis. Removed because it is stuck by a different defect than the approval bug this table documents — **not** because it is recoverable. See the scope note at the top.
+
+Two caveats on this table. **(1)** Its price basis and snapshot date are undocumented and it is not reproducible; the authoritative net figure is **$972,437.14** at the 24 Jul 2026 basis. **(2)** The totals above are recomputed from the rows. The original TOTALS row read $3,196,540 supplied / $1,431,175 net, both **$4,000 below** what its own rows sum to ($3,200,540 / $1,435,175 including vBNB) — a pre-existing arithmetic error, not something introduced by dropping vBNB. Line-item nets are unchanged.
+
+## The CSVs in this directory
+
+All four are ex-vBNB (pids 9–15 only). Generated by `../analysis/reconcile/` and
+`../analysis/export_csv.py` — see those directories' READMEs for the derivations.
+
+| File | Rows | Wallets | Grain |
+|------|------|---------|-------|
+| `current_stuck_holders.csv` | 146 | 103 | one row per (wallet, pid) still holding |
+| `all_time_depositors.csv` | 157 | 113 | one row per (wallet, pid) that ever deposited |
+| `wallet_reconciliation.csv` | 157 | 113 | one row per (wallet, pid): put-in vs got-out vs claim |
+| `compensation_per_wallet.csv` | 102 | 102 | one row per wallet: stuck equity vs RAKE received |
+
+Three things that will otherwise look like errors:
+
+- **`current_stuck_holders.usd` and `wallet_reconciliation.current_claim_usd` are a *gross* basis.**
+  Both are `shares / sharesTotal × wantLockedTotal` at spot — the strategy's recorded gross want
+  total, not net Venus equity. They sum to **$1,080,616.54**, where net equity is **$972,437.14**.
+  Different quantities, not a pricing difference. The per-position net figures are in
+  `../evidence/wallet_ledger.csv` (`stuck_usd_live`), which does sum to $972,437.14 (two cents of
+  rounding against the pool-level total).
+- **`wallet_reconciliation.csv` ex-vBNB:** $1,176,690.01 in · $91,479.52 out · $1,080,616.54 owed.
+  The money-out figure is now 97.4% stablecoin, so the old "priced at today's spot" caveat that
+  mattered when `got_out` was 93% vBNB no longer bites.
+- **102 rows, not 103, in `compensation_per_wallet.csv`.** `0x667cbbed2e1295ec25381e2b056547eb90fc8f96`
+  holds 1 wei of vBUSD shares ($0.00) and first deposited at block 5,188,949, just before the
+  `analysis/depositors.py` scan window opens at 5,190,000, so it has no RAKE attribution. Its
+  `stuck_pool_rake_usd_*` and `rake_from_stuck_pools` columns cover the 103 external wallets and sum
+  to 165.188 RAKE — the pool-level frozen-pool total is 165.188 RAKE, the 23.288 difference being
+  what gov wallet `0x16c7C45725A977ae6530e8dEE73F6da9aE2e7E07` collected before it left the affected
+  set with its pid-8-only dust position.
 
 ## Recovery Solutions Attempted
 
@@ -146,6 +189,16 @@ https://bscscan.com/advanced-filter?tadd=0x7f7bf15b9c68d23339c31652c8e8604929917
 | Mar 05, 2021 | $280 | ~6.25 | $1,750 | 5,500 | 34,375 | $9,625,000 | 31.80 RAKE ($55,650) | 18.62 RAKE ($32,585) | $11,019,114 | $1,478,607 |
 | Mar 06, 2021 | $280 | ~5.36 | $1,500 | 3,000 | 16,080 | $4,502,400 | 31.80 RAKE ($47,700) | 18.62 RAKE ($27,930) | $11,094,744 | $1,456,891 |
 | Mar 07, 2021 | $280 | ~5.0 | $1,400 | 3,200 | 16,000 | $4,480,000 | 31.80 RAKE ($44,520) | 18.62 RAKE ($26,068) | $11,165,332 | $1,435,175 |
+
+
+> **⚠️ Superseded — do not cite this table.** It uses a RAKE price series (~447 BNB / $125,160 on
+> 25 Feb 2021) that does **not** reconcile with `data_appendix.md` Table 2 ($43,300 VWAP for the
+> same day), and its "Stuck Assets" column ($1,557,670) is an eight-pool figure on the stale
+> cached-balance basis. Both have been superseded by measurements taken from archival on-chain
+> state: the seven frozen pools were worth **$1,028,474** at their freeze blocks (Venus oracle
+> prices in force at the time), and the compensation figures are derived from swap receipts, not
+> from any price table. See `VENUS_RECOVERY_REQUEST.md` and `data_appendix.md`. Retained for
+> continuity only.
 | Mar 08, 2021 | $280 | ~4.3 | $1,200 | 2,800 | 12,040 | $3,371,200 | Period Total | Period Total | $11,195,000 | $1,420,000 |
 | Mar 09, 2021 | $280 | ~3.9 | $1,100 | 2,600 | 10,140 | $2,839,200 | Period Total | Period Total | $11,220,000 | $1,410,000 |
 | Mar 10, 2021 | $280 | ~3.6 | $1,000 | 2,200 | 7,920 | $2,217,600 | Period Total | Period Total | $11,240,000 | $1,400,000 |
@@ -165,6 +218,16 @@ https://bscscan.com/advanced-filter?tadd=0x7f7bf15b9c68d23339c31652c8e8604929917
 | Jan 31, 2022 | $330 | ~20 | $6,600 | 250 | 5,000 | $1,650,000 | Period Total | Period Total | $11,850,000 | $1,320,000 |
 | Feb 15, 2022 | $350 | ~12 | $4,200 | 180 | 2,160 | $756,000 | Period Total | Period Total | $11,880,000 | $1,350,000 |
 | Feb 28, 2022 | $360 | ~7.86 | $2,830 | 150 | 1,179 | $424,440 | Period Total | Period Total | $11,900,000 | $1,360,000 |
+
+> **The `Total Stuck Assets` column is an undocumented legacy estimate — do not cite it.** It is an
+> **8-pool series that includes vBNB**, carried at 2021-era prices with no recorded methodology, and
+> it cannot be reproduced or split per pool from anything in this repo. It is left in place only
+> because it is the series the rest of this archival table was built around. The pids-9–15 figure
+> is **$972,437.14** net (24 Jul 2026 basis). The `Venus Rewards` column's 31.78 / 18.62 RAKE per day
+> likewise derives from the **690** allocPoint total of pids **8–15**, so those daily rates are not
+> pids-9–15 rates either. The pids-9–15 allocPoint subtotal is not recorded in this repo and would
+> need an RPC read (`analysis/reconcile/alloccheck.py`) — it is deliberately left blank here rather
+> than guessed.
 
 ---
 

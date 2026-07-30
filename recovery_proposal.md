@@ -7,12 +7,15 @@ I'm the founder of a BSC project that operated between 2021-2022 as a fork of Au
 
 The technical root cause is documented in **[Data Appendix Section A](./data_appendix.md#a-technical-root-cause)**, where the `unpause()` function incorrectly maintains zero approvals instead of restoring unlimited approvals, effectively breaking all Venus protocol interactions.
 
-Our affected contracts currently hold (live on-chain data, verified 24 July 2026) **~$2.22 million in supplied assets** with **~$1.21 million borrowed**, resulting in **~$1.01 million net stuck value** across eight different Venus markets
-(detailed breakdown in **[Data Appendix Section B](./data_appendix.md#b-affected-contract-details)**). *USD figures track spot prices; the fixed on-chain token quantities are the authoritative measure and are fully verifiable via the commands in the appendix.*
+Our affected contracts currently hold (live on-chain data, verified 24 July 2026) **~$2.11 million in supplied assets** with **~$1.14 million borrowed**, resulting in **~$974 thousand net stuck value** across **seven** Venus markets — vBUSD, vBTC, vETH, vLINK, vUSDT, vUSDC and vDOT (detailed breakdown in **[Data Appendix Section B](./data_appendix.md#b-affected-contract-details)**). *USD figures track spot prices; the fixed on-chain token quantities are the authoritative measure and are fully verifiable via the commands in the appendix.*
+
+> **Note on scope — our eighth Venus strategy is deliberately excluded.** We also operate a vBNB strategy carrying the same code, but the bug zeroes an **ERC-20 allowance**, and the vBNB market accepts **native BNB** via a `payable mint()` and has no `underlying()` ERC-20 at all — so no `transferFrom` and no allowance is ever consulted there. The approval bug therefore cannot be what stopped that strategy, and we are not asking Venus to act on it. We have removed it from every figure in this request. **Only the 7 ERC-20 strategies are frozen by this bug.**
+>
+> To be straight about it: that strategy is *also* stuck, by an unrelated fault of our own — over five years its borrow interest outran its supply interest until the position passed its own leverage ceiling, and the unwind path now reverts on a SafeMath underflow. We are not presenting it as recovered or as trivially recoverable. We exclude it because it is a different problem and **not one Venus needs to solve.**
 
 > **⚠️ The stuck funds are now being actively eroded.** Venus's own market-deprecation process (VIP-634/635 and the multi-chain wind-down) set the vDOT market's collateral factor and liquidation threshold to zero, which made our vDOT strategy liquidatable through no fault of ours. Between 12–22 July 2026 it was liquidated in **21 transactions**, and vLINK is one governance step away from the same fate. Because the approval bug means our strategies **cannot repay, deleverage, or exit**, they cannot defend themselves — the deprecation engine (punitive ~300% borrow APR, 100% reserve factor) transfers our equity to Venus reserves and liquidators over time. This makes a cooperative recovery urgent, not merely desirable. Full record in **[Data Appendix Section F](./data_appendix.md#f-deprecation-and-liquidation-record)**.
 
-We are requesting assistance to recover roughly **$1 million** in Venus protocol tokens that are permanently stuck in our smart contracts due to an inherited approval bug from AutoFarm's strategy implementation. As the verified owner of both the deployer wallet and affected contracts, we seek Venus protocol team collaboration to unlock these assets and resume normal operations.
+We are requesting assistance to recover roughly **$974 thousand** in Venus protocol tokens that are permanently stuck in our smart contracts due to an inherited approval bug from AutoFarm's strategy implementation. As the verified owner of both the deployer wallet and affected contracts, we seek Venus protocol team collaboration to unlock these assets and resume normal operations.
 
 ## Why Now?
 
@@ -29,8 +32,23 @@ In 2021, when this issue first occurred, it coincided with Venus's depegging eve
 
 The bug affected our platform very shortly after launch. Fortunately, I had other functioning products, so the stuck Venus vault assets represented approximately 4% of our total value locked (TVL). Since these funds were unable to generate yield for users or the platform, I took immediate action to protect our community.
 
-I successfully compensated all affected users on the day the funds were stuck with our native token RAKE at over a 2x premium, allowing them to claim and sell their RAKE tokens to recover their stuck principal and continue to participate in our other products if they choose to do so. All RAKE tokens earned from dev or platform fees were held and I abstained from selling the tokens to ensure sufficient liquidity for anyone who wanted to sell their compensated RAKE.  As you see the dev fee value was almost exactly equal to the compensation value, effectively making the compensation a value transfer from myself to the stuck users. This ensured no users suffered financial losses due to the technical issue. Over $4.7M was swapped for BNB on day one (the WBNB side of the trades; see Data Appendix Table 2), showing that there was sufficient liquidity if stuck users wanted to sell their RAKE for significantly more than their stuck principal and leave the project. We provided the relevant data for a week after the funds were stuck to show their compensated RAKE tokens could have been used to recover their principal and over a 2x premium at any time.  (see **[Data Appendix Table 2](./data_appendix.md#table-2-complete-daily-trading-and-liquidity-data)**) .
-After completing user compensation, I shifted focus to other development priorities, as initial attempts to engage Venus support yielded limited progress and our primary goal of compensating stuck users was successfully completed. 
+The affected pools kept paying RAKE emissions to their depositors after the strategies were bricked, exactly as if the deposits were still working, and their allocation points were never reduced — not then, not since. In the first seven days the seven frozen pools paid their depositors **165.188 RAKE**, and **486.975 RAKE** by 25 March 2021.
+
+What that was worth is measured from the swap receipts, not estimated: for each day, the BNB those wallets were actually paid divided by the RAKE they actually sold, applied to that day's emissions. RAKE fell from $43,300 to $1,300 in ten days, so a single blended rate would distort it either way; each day is valued at its own realized rate instead.
+
+- By **day five — 2 March 2021** — they had received **4,467.2 BNB**, worth **$1,020,056** at the BNB price of the time. That is **1.05x** the $972,437 of principal still frozen, and the point at which the emissions passed it.
+- By **day seven** it was **5,050.1 BNB — $1,158,700, or 1.19x**. By 25 March, **5,884.1 BNB — $1,354,993, or 1.39x**.
+- At **day-of VWAP** the first week comes to **$1,278,224 — 1.31x**.
+
+Both sides of that comparison are in Feb–Mar 2021 dollars, so it mixes no price epochs. **96 of the 103 affected wallets sold**, and every fill is an on-chain swap with a matching transfer — this was real money, not paper.
+
+Two things I want to state plainly rather than have someone else point out. It is an **aggregate**: coverage was not universal, and seven of the 103 wallets never sold their RAKE at all. And it was **not a discretionary act** — allocation points were never changed and no airdrop was made. The pools continued paying their pre-existing schedule, which is why the coverage accrues over days rather than arriving in one transaction. What I claim is that the compensation was substantial, that it was real rather than promised, and that it exceeded the frozen principal within the first week.
+
+Liquidity was not the constraint. Over $4.7M was swapped for BNB on day one (the WBNB side of the trades; see Data Appendix Table 2), so any depositor who wanted to sell and leave could do so (see **[Data Appendix Table 2](./data_appendix.md#table-2-complete-daily-trading-and-liquidity-data)**).
+
+What I can show without qualification is that I did not sell into that. Of the **9,702.43 RAKE** minted to the dev-fee wallet, it still holds **8,933.66 RAKE — 92.08%** of it, and its only market interactions in the window were liquidity *adds* and a burn. The dev fee was accrued and never sold, and that is verifiable in a single call.
+
+After the compensation was paid out, I shifted focus to other development priorities, as initial attempts to engage Venus support yielded limited progress.
 
 ## Current Development and Recovery Plans
 
@@ -42,25 +60,25 @@ The recovered funds would be allocated toward:
 - Marketing and user acquisition
 - Continued platform development and feature expansion
 
-To make this worthwhile for Venus directly, I am offering a recovery fee paid to the Venus treasury — a percentage of the ~$1M recovered — and I will cover all audit and engineering costs associated with the recovery. Beyond that, the platform launch is expected to drive additional volume and users for Venus, but the treasury fee and covered costs stand on their own regardless.
+To make this worthwhile for Venus directly, I am offering a recovery fee paid to the Venus treasury — a percentage of the ~$974k recovered — and I will cover all audit and engineering costs associated with the recovery. Beyond that, the platform launch is expected to drive additional volume and users for Venus, but the treasury fee and covered costs stand on their own regardless.
 
 ## Proposed Recovery Solution
 
 ### Key Finding: External Debt Repayment Works
 
-We verified on a BSC fork that `repayBorrowBehalf()` successfully repays strategy debt from an external address. This works **despite the approval bug**, because it draws on the *repayer's* own allowance, not the strategy's broken one. Repaying the debt is the essential first step of the recovery: once debt is zero, moving the collateral out of the strategy creates **zero bad debt** for Venus. On its own, however, `repayBorrowBehalf()` recovers **$0** — it only clears the liability; the ~$2.22M of supplied collateral remains stranded behind the same broken approval. A second step is therefore required to move the collateral.
+We verified on a BSC fork that `repayBorrowBehalf()` successfully repays strategy debt from an external address. This works **despite the approval bug**, because it draws on the *repayer's* own allowance, not the strategy's broken one. Repaying the debt is the essential first step of the recovery: once debt is zero, moving the collateral out of the strategy creates **zero bad debt** for Venus. On its own, however, `repayBorrowBehalf()` recovers **$0** — it only clears the liability; the ~$2.11M of supplied collateral remains stranded behind the same broken approval. A second step is therefore required to move the collateral.
 
 ### Recommended Recovery Path — Governance vToken Implementation Swap (Full Recovery)
 
-This is the **recommended** approach. It recovers the full net equity (~$1.0M) with **no liquidation penalty, no bad debt, and no stranded equity**, in three steps:
+This is the **recommended** approach. It recovers the full net equity (~$974k) with **no liquidation penalty, no bad debt, and no stranded equity**, in three steps:
 
-1. **Owner repays all strategy debt** via `repayBorrowBehalf()` (~$1.21M; verified working despite the bug). With debt = 0, moving the collateral creates **zero bad debt** for Venus.
+1. **Owner repays all strategy debt** via `repayBorrowBehalf()` (~$1.14M; verified working despite the bug). With debt = 0, moving the collateral creates **zero bad debt** for Venus.
 2. **The VIP.** Venus governance temporarily points each affected vToken delegator (proxy) at a patched implementation that adds a single admin-only function `rescueTransfer(strategy, to)`, which moves the strategy's vTokens to the RAKE governance address `0x16c7C45725A977ae6530e8dEE73F6da9aE2e7E07`, then restores the original implementation. All of this happens **atomically within one VIP transaction**, so no external actor can interleave between the swap and the restore.
-3. **Owner redeems** the ~$2.22M of underlying normally.
+3. **Owner redeems** the ~$2.11M of underlying normally.
 
-**Result:** full ~$1.0M net equity recovered — no liquidation penalty, no bad debt, no stranded equity.
+**Result:** full ~$974k net equity recovered — no liquidation penalty, no bad debt, no stranded equity.
 
-**Feasibility verified on-chain:** the 7 ERC-20 vTokens are delegator proxies whose admin is the Venus Normal Timelock `0x939bD8d64c0A9583A7Dcea9933f7b21697ab6396`; they share the implementation `0xCDfea50f7CECCB24Fe804657DB8E6c93b689941e`, and the `accountTokens` mapping lives at storage slot 14. vBNB is a native market with a separate admin (`0x9A7890534d9d91d473F28cB97962d176e2B65f1d`) and is handled separately.
+**Feasibility verified on-chain:** the 7 ERC-20 vTokens are delegator proxies whose admin is the Venus Normal Timelock `0x939bD8d64c0A9583A7Dcea9933f7b21697ab6396`; they share the implementation `0xCDfea50f7CECCB24Fe804657DB8E6c93b689941e`, and the `accountTokens` mapping lives at storage slot 14. Our vBNB strategy is a native market with a separate admin (`0x9A7890534d9d91d473F28cB97962d176e2B65f1d`), is not affected by the approval bug, and is **not part of this request** — no Venus action is needed on it.
 
 ### Proof of Concept
 
@@ -116,11 +134,11 @@ cast call 0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c \
   --rpc-url https://bsc-dataseed.binance.org
 ```
 
-Full verification commands for all 8 strategies available in **[Data Appendix](./data_appendix.md)**.
+Full verification commands for all 7 affected strategies available in **[Data Appendix](./data_appendix.md)**.
 
 ## Verification and Next Steps
 
-I can provide complete proof of ownership and control over the contracts containing the stuck tokens. Crucially, this control is **verifiable on-chain right now** — every one of the 8 strategy contracts returns `govAddress()` = `0x16c7C45725A977ae6530e8dEE73F6da9aE2e7E07`, proving I control the strategies themselves rather than merely having deployed them. Anyone, including Venus risk reviewers, can confirm this without trusting me:
+I can provide complete proof of ownership and control over the contracts containing the stuck tokens. Crucially, this control is **verifiable on-chain right now** — every one of the 7 affected strategy contracts returns `govAddress()` = `0x16c7C45725A977ae6530e8dEE73F6da9aE2e7E07`, proving I control the strategies themselves rather than merely having deployed them. Anyone, including Venus risk reviewers, can confirm this without trusting me:
 
 ```bash
 cast call 0xB3bCA2C1c2C4DF2C903BE3F341C96732Ac8b3c12 "govAddress()(address)" --rpc-url https://bsc-dataseed.binance.org

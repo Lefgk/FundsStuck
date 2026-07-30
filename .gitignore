@@ -5,6 +5,28 @@
 # Local Foundry test suite (kept private)
 /foundry-test
 
+# Internal recovery notes — operational, not for the public proposal repo
+/RECOVERY_ANALYSIS.md
+/RECOVERY_PLAYBOOK.md
+
+# Raw archival log dumps (~110 MB, regenerable via analysis/*.py)
+/analysis/cache
+
+# Working analysis + derivation scripts (not part of the public proposal)
+/analysis
+/evidence
+/COMPENSATION_EVIDENCE.md
+/RAKE_STUCK_WALLETS.md
+
+# Evidence pack — distributed directly, not via the repo
+/package
+
+# Per-wallet source data (contains individual depositor addresses)
+/raw_data/all_time_depositors.csv
+/raw_data/compensation_per_wallet.csv
+/raw_data/current_stuck_holders.csv
+/raw_data/wallet_reconciliation.csv
+
 # OS / editor junk
 .DS_Store
 .vscode/
